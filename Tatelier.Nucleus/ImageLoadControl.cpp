@@ -94,7 +94,7 @@ namespace Tatelier {
 				gps.DrawImage(&bmp2, (INT)(info.Width / 2 - bmp2.GetWidth() / 2), (INT)(info.Height / 2 - bmp2.GetHeight() / 2));
 				break;
 			case 0:
-				//gps.DrawImage(bmp2, 0, 0);
+				gps.DrawImage(&bmp2, 0, 0);
 				break;
 			}
 		}
