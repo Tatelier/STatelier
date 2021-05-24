@@ -1,4 +1,5 @@
 #include "ImageLoadControl.h"
+
 #include <windows.h>
 #include <gdiplus.h>
 
@@ -28,7 +29,7 @@ namespace Tatelier {
 		return Load(path.c_str());
 	}
 
-	int ImageLoadControl::LoadText(const ImageTextInfo& info)
+	int ImageLoadControl::CreateTextImageHandle(const ImageTextInfo& info)
 	{
 		int handle = -1;
 		int status;

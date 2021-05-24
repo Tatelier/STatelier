@@ -20,6 +20,6 @@ namespace Tatelier {
 		static ImageLoadControl& GetInstance();
 		int Load(const char* path);
 		int Load(const std::string& path);
-		int LoadText(const ImageTextInfo& info);
+		int CreateTextImageHandle(const ImageTextInfo& info);
 	};
 }
