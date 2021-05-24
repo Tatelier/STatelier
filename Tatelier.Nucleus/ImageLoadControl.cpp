@@ -2,6 +2,8 @@
 #include <windows.h>
 #include <gdiplus.h>
 
+#include <vector>
+
 #include "DxLib.h"
 
 #define PNG_CLSID L"{557cf406-1a04-11d3-9a73-0000f81ef32e}"
@@ -100,8 +102,31 @@ namespace Tatelier {
 		CLSID clsid;
 		CLSIDFromString(PNG_CLSID, &clsid);
 
-		// TODO: 
+		int hresult;
+		IStream* pIStream;
+		hresult = ::CreateStreamOnHGlobal(NULL, TRUE, &pIStream);
 
+		Gdiplus::Status sstatus = bmp.Save(pIStream, &clsid);
+
+		HGLOBAL hg = NULL;
+		GetHGlobalFromStream(pIStream, &hg);
+		int bufSize = GlobalSize(hg);
+
+		LPVOID pImage = GlobalLock(hg);
+		std::vector<uint8_t> data;
+		data.resize(bufSize);
+		memcpy(&data[0], pImage, bufSize);
+		GlobalUnlock(hg);
+
+		SetDrawValidGraphCreateFlag(TRUE);
+		SetDrawValidAlphaChannelGraphCreateFlag(TRUE);
+
+		handle = CreateGraphFromMem(&data[0], bufSize);
+
+		SetDrawValidGraphCreateFlag(FALSE);
+		SetDrawValidAlphaChannelGraphCreateFlag(FALSE);
+
+		pIStream->Release();
 		return handle;
 	}
 }
