@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STatelier", "STatelier\STatelier.csproj", "{3B1848C3-277C-4A9C-8F29-8A10B6D5F857}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STatelier", "STatelier\STatelier.csproj", "{3B1848C3-277C-4A9C-8F29-8A10B6D5F857}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C3CDADC1-800A-4CED-8621-7414192C7807} = {C3CDADC1-800A-4CED-8621-7414192C7807}
 	EndProjectSection
