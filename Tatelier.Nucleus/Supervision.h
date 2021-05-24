@@ -1,8 +1,9 @@
 #pragma once
 
-#include <stdint.h>
 #include <windows.h>
 #include <gdiplus.h>
+
+#include <cstdint>
 
 namespace Tatelier {
 
@@ -53,7 +54,7 @@ namespace Tatelier {
 		int64_t m_nowMicroSecTime;
 		int32_t m_nowMillisecTime;
 		ULONG_PTR m_gdiplusToken;
-		Gdiplus::GdiplusStartupInput m_gdiplusStartupInput;
+		Gdiplus::GdiplusStartupInput m_pGdiplusStartupInput;
 	};
 
 }

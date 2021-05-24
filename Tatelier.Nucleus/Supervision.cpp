@@ -33,7 +33,7 @@ namespace Tatelier {
 
 	void Supervision::Start()
 	{
-		Gdiplus::GdiplusStartup(&m_gdiplusToken, &m_gdiplusStartupInput, 0);
+		Gdiplus::GdiplusStartup(&m_gdiplusToken, &m_pGdiplusStartupInput, 0);
 
 		this->m_pSceneControl = &SceneControlMaster::GetInstance();
 		this->m_pSceneControl->Start();
@@ -50,7 +50,7 @@ namespace Tatelier {
 		info.FontSize = 64;
 		info.Width = 800;
 		info.Height = 130;
-		ImageLoadControl::GetInstance().LoadText(info);
+		int a = ImageLoadControl::GetInstance().CreateTextImageHandle(info);
 		//MyMessageBox::GetInstance().Start();
 		//auto messageInfo = new MyMessageBoxInfo();
 		//auto messageItemInfo = MyMessageBoxItemInfo();
