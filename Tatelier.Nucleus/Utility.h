@@ -39,7 +39,7 @@ bool ttleStartWith(const std::string& s, const std::string& prefix);
  */
 bool ttleEndWith(const std::string& s, const std::string& suffix);
 
-int ttleEndWithIndex(const std::string& s, const std::string& suffixSplit);
+int32_t ttleEndWithIndex(const std::string& s, const std::string& suffixSplit);
 
 /**
  * @brief 指定したディレクトリ内をサブディレクトリまで探索し、ファイル一覧を取得する

@@ -4,11 +4,10 @@
 
 #include <istream>
 #include <sstream>
+#include <algorithm> 
+#include <iterator>
 
 #include "Utility.h"
-
-#include <algorithm> // std::equal
-#include <iterator> // std::rbegin, std::rend
 
 bool ttleStartWith(const std::string& s, const std::string& prefix)
 {
@@ -25,7 +24,7 @@ bool ttleEndWith(const std::string& s, const std::string& suffix)
 	return std::equal(std::rbegin(suffix), std::rend(suffix), std::rbegin(s));
 }
 
-int ttleEndWithIndex(const std::string& s, const std::string& suffixSplit)
+int32_t ttleEndWithIndex(const std::string& s, const std::string& suffixSplit)
 {
 
 	std::stringstream ss{ suffixSplit };
