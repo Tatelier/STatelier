@@ -4,46 +4,55 @@
 
 namespace Tatelier {
 
-	int InputControlItem::GetCount(int keyCode)
+	int32_t InputControlItem::GetCount(int keyCode)
 	{
-		if (!this->IsEnabled())
+		if (!IsEnabled()) {
 			return 0;
-		return input->GetCount(keyCode);
+		}
+
+		return m_pInputControl->GetCount(keyCode);
 	}
 
 	bool InputControlItem::GetKey(int keyCode)
 	{
-		if (!this->IsEnabled())
+		if (!IsEnabled()) {
 			return false;
-		return input->GetKey(keyCode);
+		}
+		return m_pInputControl->GetKey(keyCode);
 	}
 
 	bool InputControlItem::GetKeyDown(int keyCode)
 	{
-		if (!this->IsEnabled())
+		if (!IsEnabled()) {
 			return false;
-		return input->GetKeyDown(keyCode);
+		}
+		return m_pInputControl->GetKeyDown(keyCode);
 	}
 
 	bool InputControlItem::GetKeyUp(int keyCode)
 	{
-		if (!this->IsEnabled())
+		if (!IsEnabled()) {
 			return false;
-		return input->GetKeyUp(keyCode);
+		}
+		return m_pInputControl->GetKeyUp(keyCode);
 	}
 
 	bool InputControlItem::IsEnabled()
 	{
-		return enabled;
+		return m_enabled;
 	}
 
-	void InputControlItem::SetEnbaled(bool value)
+	void InputControlItem::SetEnbaled(bool enabled)
 	{
-		enabled = value;
+		m_enabled = enabled;
 	}
 
 	InputControlItem::InputControlItem()
 	{
-		input = &Input::GetInstance();
+		m_pInputControl = &Input::GetInstance();
+	}
+
+	InputControlItem::~InputControlItem()
+	{
 	}
 }

@@ -227,6 +227,7 @@
   <ItemGroup>
     <ClInclude Include="AuthConnect\AuthConnectScene.h" />
     <ClInclude Include="DxLibEx.h" />
+    <ClInclude Include="IInputControlItem.h" />
     <ClInclude Include="ImageLoadControl.h" />
     <ClInclude Include="SongSelect\BackgroundInfo.h" />
     <ClInclude Include="SongSelect\BackSelectItem.h" />

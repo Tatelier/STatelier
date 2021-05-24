@@ -79,8 +79,10 @@
     <ClInclude Include="SongSelect\BackgroundInfo.h" />
     <ClInclude Include="ImageLoadControl.h" />
     <ClInclude Include="DxLibEx.h" />
+    <ClInclude Include="IInputControlItem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="MainConfig.hjson" />
   </ItemGroup>
 </Project>
