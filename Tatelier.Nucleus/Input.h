@@ -6,62 +6,63 @@
 namespace Tatelier {
 
 	/**
-	 * @brief キー入力クラス ※シングルトン
-	 */
+	* @brief キー入力クラス ※シングルトン
+	*/
 	class Input {
 	public:
 		/**
-		 * @brief シングルトンインスタンスを取得する
-		 * 
-		 * @return インスタンス
-		 */
+		* @brief シングルトンインスタンスを取得する
+		*
+		* @return インスタンス
+		*/
 		static Input& GetInstance();
 
 		/**
-		 * @brief キーの入力数を取得する
-		 *
-		 * @param [in] key キー
-		 * @return 0: 未入力, -1: 離れた直後, 1以上: 入力数
-		 */
+		* @brief キーの入力数を取得する
+		*
+		* @param [in] key キー
+		* @return 0: 未入力, -1: 離れた直後, 1以上: 入力数
+		*/
 		int32_t GetCount(int key);
 
 		/**
-		 * @brief キーを押下中かどうかを取得する
-		 *
-		 * @param [in] key キー
-		 * @return true: 押下中, false: 未押下
-		 */
+		* @brief キーを押下中かどうかを取得する
+		*
+		* @param [in] key キー
+		* @return true: 押下中, false: 未押下
+		*/
 		bool GetKey(int key);
 
 		/**
-		 * @brief キーを離した直後かどうかを取得する
-		 *
-		 * @param [in] key キー
-		 * @return true: 離した直後, false: 直後ではない
-		 */
+		* @brief キーを離した直後かどうかを取得する
+		*
+		* @param [in] key キー
+		* @return true: 離した直後, false: 直後ではない
+		*/
 		bool GetKeyUp(int key);
 
 		/**
-		 * @brief キーを押下した直後かどうかを取得する
-		 *
-		 * @param [in] key キー
-		 * @return true: 押下した直後, false: 直後ではない
-		 */
+		* @brief キーを押下した直後かどうかを取得する
+		*
+		* @param [in] key キー
+		* @return true: 押下した直後, false: 直後ではない
+		*/
 		bool GetKeyDown(int key);
 
 		/**
-		 * @brief 更新処理
-		 *
-		 * @remark メインループでコールすること
-		 */
+		* @brief 更新処理
+		*
+		* @remark メインループでコールすること
+		*/
 		void Update();
+
 	private:
-		const static int32_t BytesLen = 256;
+		const static int32_t ARRAY_SIZE = 256;
 
-		char bytes[BytesLen];
-		int32_t cntBytes[BytesLen];
+		char m_ByteArray[ARRAY_SIZE] = { 0 };
+		int32_t m_CountArray[ARRAY_SIZE] = { 0 };
 
-		Input() { }
-		Input(const Input& instance) { }
+		Input() {}
+		Input(const Input& instance) : Input() {}
 	};
 }

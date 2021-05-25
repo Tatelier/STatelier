@@ -4,7 +4,7 @@ namespace Tatelier {
 
 	int Input::GetCount(int key)
 	{
-		return cntBytes[key];
+		return m_CountArray[key];
 	}
 
 	Input& Input::GetInstance()
@@ -30,17 +30,17 @@ namespace Tatelier {
 
 	void Input::Update()
 	{
-		if (GetHitKeyStateAll(bytes) == 0) {
-			for (int i = 0; i < BytesLen; i++) {
-				if (bytes[i] > 0) {
-					cntBytes[i]++;
+		if (GetHitKeyStateAll(m_ByteArray) == 0) {
+			for (int i = 0; i < ARRAY_SIZE; i++) {
+				if (m_ByteArray[i] > 0) {
+					m_CountArray[i]++;
 				}
 				else {
-					if (cntBytes[i] > 0) {
-						cntBytes[i] = -1;
+					if (m_CountArray[i] > 0) {
+						m_CountArray[i] = -1;
 					}
 					else {
-						cntBytes[i] = 0;
+						m_CountArray[i] = 0;
 					}
 				}
 			}
