@@ -40,6 +40,7 @@
     <ClCompile Include="SongSelect\BackgroundInfo.cpp" />
     <ClCompile Include="ImageLoadControl.cpp" />
     <ClCompile Include="DxLibEx.cpp" />
+    <ClCompile Include="ImageCreateControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthConnect\AuthConnectScene.h" />
@@ -80,6 +81,7 @@
     <ClInclude Include="ImageLoadControl.h" />
     <ClInclude Include="DxLibEx.h" />
     <ClInclude Include="IInputControlItem.h" />
+    <ClInclude Include="ImageCreateControl.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

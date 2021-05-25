@@ -186,6 +186,7 @@
   <ItemGroup>
     <ClCompile Include="AuthConnect\AuthConnectScene.cpp" />
     <ClCompile Include="DxLibEx.cpp" />
+    <ClCompile Include="ImageCreateControl.cpp" />
     <ClCompile Include="ImageLoadControl.cpp" />
     <ClCompile Include="SongSelect\BackgroundInfo.cpp" />
     <ClCompile Include="SongSelect\BackSelectItem.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="AuthConnect\AuthConnectScene.h" />
     <ClInclude Include="DxLibEx.h" />
     <ClInclude Include="IInputControlItem.h" />
+    <ClInclude Include="ImageCreateControl.h" />
     <ClInclude Include="ImageLoadControl.h" />
     <ClInclude Include="SongSelect\BackgroundInfo.h" />
     <ClInclude Include="SongSelect\BackSelectItem.h" />
