@@ -263,6 +263,7 @@
     <ClInclude Include="SongSelect\Item.h" />
     <ClInclude Include="SongSelect\ItemControl.h" />
     <ClInclude Include="SongSelect\SongSelectScene.h" />
+    <ClInclude Include="ttle.h" />
     <ClInclude Include="Supervision.h" />
     <ClInclude Include="System\SystemDirectory.h" />
     <ClInclude Include="Tatelier_API.h" />
