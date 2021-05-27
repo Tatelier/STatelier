@@ -42,6 +42,7 @@
     <ClCompile Include="DxLibEx.cpp" />
     <ClCompile Include="ImageCreateControl.cpp" />
     <ClCompile Include="SongSelect\ItemControl2.cpp" />
+    <ClCompile Include="SongSelect\MusicalScoreSummary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthConnect\AuthConnectScene.h" />
@@ -84,6 +85,8 @@
     <ClInclude Include="IInputControlItem.h" />
     <ClInclude Include="ImageCreateControl.h" />
     <ClInclude Include="SongSelect\ItemControl2.h" />
+    <ClInclude Include="ttle.h" />
+    <ClInclude Include="SongSelect\MusicalScoreSummary.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

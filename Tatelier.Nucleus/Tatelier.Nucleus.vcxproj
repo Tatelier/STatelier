@@ -206,6 +206,7 @@
     <ClCompile Include="MainConfig.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneControlMaster.cpp" />
+    <ClCompile Include="SongSelect\MusicalScoreSummary.cpp" />
     <ClCompile Include="SongSelect\ScoreSelectItem.cpp" />
     <ClCompile Include="SongSelect\SelectItem.cpp" />
     <ClCompile Include="SongSelect\SelectItemControl.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="MainConfig.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneControlMaster.h" />
+    <ClInclude Include="SongSelect\MusicalScoreSummary.h" />
     <ClInclude Include="SongSelect\ScoreSelectItem.h" />
     <ClInclude Include="SongSelect\SelectItem.h" />
     <ClInclude Include="SongSelect\SelectItemControl.h" />
