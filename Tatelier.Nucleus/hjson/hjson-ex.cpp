@@ -23,7 +23,7 @@ Hjson::Value HjsonEx::Load(const std::string& path)
 	std::ostringstream buf;
 	buf << ifs.rdbuf();
 
-	std::string jsonText = ttleConvertToSjis(buf.str());
+	std::string jsonText = Tatelier::ttleConvertToSjis(buf.str());
 
 	result = Hjson::Unmarshal(jsonText);
 
@@ -89,7 +89,8 @@ int HjsonEx::EQs(const Hjson::Value& hj_value, const std::string& key, std::stri
 	EQv(hj_value, key, &v);
 
 	if (v.type() == Hjson::Type::String) {
-		(*result) = ttleConvertToSjis(v.to_string());
+		// TODO: Utility
+		(*result) = Tatelier::ttleConvertToSjis(v.to_string());
 		return 1;
 	}
 	else {
