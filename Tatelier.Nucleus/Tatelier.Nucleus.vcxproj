@@ -188,6 +188,7 @@
     <ClCompile Include="DxLibEx.cpp" />
     <ClCompile Include="ImageCreateControl.cpp" />
     <ClCompile Include="ImageLoadControl.cpp" />
+    <ClCompile Include="SongSelect\ItemControl2.cpp" />
     <ClCompile Include="SongSelect\BackgroundInfo.cpp" />
     <ClCompile Include="SongSelect\BackSelectItem.cpp" />
     <ClCompile Include="Error.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="IInputControlItem.h" />
     <ClInclude Include="ImageCreateControl.h" />
     <ClInclude Include="ImageLoadControl.h" />
+    <ClInclude Include="SongSelect\ItemControl2.h" />
     <ClInclude Include="SongSelect\BackgroundInfo.h" />
     <ClInclude Include="SongSelect\BackSelectItem.h" />
     <ClInclude Include="Error.h" />
