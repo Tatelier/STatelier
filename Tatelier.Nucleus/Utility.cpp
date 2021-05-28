@@ -289,6 +289,7 @@ namespace Tatelier {
 
 		return path.string();
 	}
+
 	TLRESULT ttleFileAllText(const std::string& filePath, std::string* text)
 	{
 		std::ostringstream ss;
@@ -301,6 +302,26 @@ namespace Tatelier {
 		ss << ifs.rdbuf();
 
 		*text = ss.str();
+
+		return TL_SUCCESS;
+	}
+	TLRESULT ttleFileAllLine(const std::string& filePath, std::vector<std::string>* lineList)
+	{
+		std::ostringstream ss;
+		std::ifstream ifs(filePath);
+
+		if (!ifs.is_open()) {
+			// TODO: ƒGƒ‰[ˆ—
+		}
+
+		ss << ifs.rdbuf();
+		std::string line;
+
+		while (std::getline(ifs, line)) {
+			if (line.c_str()[line.size() - 1] == '\r') {
+				line.erase(line.size() - 1);
+			}
+		}
 
 		return TL_SUCCESS;
 	}

@@ -110,12 +110,22 @@ namespace Tatelier {
 	std::string ttlePathCombineString(const std::string& path1, const std::string& path2, const std::string& path3);
 
 	/**
-	* @brief パス結合した文字列を返す
+	* @brief ファイルを開き、すべてのテキストを取得する
 	*
-	* @param path1 [in] ファイルパス
-	* @param path2 [out] 取得したテキスト
+	* @param filePath [in] ファイルパス
+	* @param text [out] 取得したテキスト
 	* 
-	* @return std::string 結合した文字列
+	* @return TL_SUCCESS: 成功
 	*/
 	TLRESULT ttleFileAllText(const std::string& filePath, std::string* text);
+
+	/**
+	* @brief ファイルを開き、すべてのテキストを取得する
+	*
+	* @param filePath [in] ファイルパス
+	* @param lineList [out] 取得したテキスト
+	*
+	* @return TL_SUCCESS: 成功
+	*/
+	TLRESULT ttleFileAllLine(const std::string& filePath, std::vector<std::string>* lineList);
 }
