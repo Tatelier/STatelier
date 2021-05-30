@@ -11,44 +11,46 @@ namespace Tatelier::SongSelect {
 	class SelectItem;
 
 	/**
-		 * @brief 選択項目管理クラス
-		 */
+	* @brief 選択項目管理クラス
+	*/
 	class SelectItemControl {
 	public:
+		SelectItemControl(std::wstring folderPath, const Hjson::Value hjson);
+
 		/**
-			 * @brief インスタンスを生成する
-			 *
-			 * @param itemControl 項目管理クラス
-			 * @param imageRootFolder 画像ルートフォルダ
-			 * @return SelectItemControl* インスタンスポインタ
-			 */
+		* @brief インスタンスを生成する
+		*
+		* @param itemControl 項目管理クラス
+		* @param imageRootFolder 画像ルートフォルダ
+		* @return SelectItemControl* インスタンスポインタ
+		*/
 		static SelectItemControl* Create(std::shared_ptr<ItemControl> itemControl, const std::string& imageRootFolder);
 		/**
-			 * @brief 選択中の項目
-			 * @return std::shared_ptr<SelectItem> 選択中の項目
-			 */
+		* @brief 選択中の項目
+		* @return std::shared_ptr<SelectItem> 選択中の項目
+		*/
 		std::shared_ptr<SelectItem> GetNowSelectItem();
 		/**
-			 * @brief 前の項目に移動する
-			 */
+		* @brief 前の項目に移動する
+		*/
 		void Prev();
 		/**
-			 * @brief 次の項目に移動する
-			 */
+		* @brief 次の項目に移動する
+		*/
 		void Next();
 		/**
-			 * @brief 項目を開く。
-			 *
-			 * @return true
-			 * @return false
-			 */
+		* @brief 項目を開く。
+		*
+		* @return true
+		* @return false
+		*/
 		bool Open();
 		/**
-			 * @brief 項目を閉じる
-			 *
-			 * @return true 成功
-			 * @return false 失敗
-			 */
+		* @brief 項目を閉じる
+		*
+		* @return true 成功
+		* @return false 失敗
+		*/
 		bool Close();
 
 		void SetThemeData(std::string themeFolder, const Hjson::Value& data);
