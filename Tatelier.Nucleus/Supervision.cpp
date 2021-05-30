@@ -13,8 +13,7 @@
 #include "Utility.h"
 
 #include "MyMessageBox.h"
-#include "SongSelect\SelectItemControl.h"
-#include "SongSelect\ItemControl2.h"
+#include "SongSelect/ItemControl2.h"
 
 #pragma comment (lib, "gdiplus.lib")
 #pragma comment (lib, "ole32.lib")
@@ -40,19 +39,17 @@ namespace Tatelier {
 		this->m_pSceneControl = &SceneControlMaster::GetInstance();
 		this->m_pSceneControl->Start();
 
-		SongSelect::ItemControl2 itemControl;
-		itemControl.Init("Resources\\Score");
+		SongSelect::ItemControl2 itemControl2;
+		itemControl2.Init("Resources\\Score");
 
-		SongSelect::SelectItemControl("Resources\\スコア", Hjson::Value());
-
-		ImageTextInfo info;
-		info.Text = L"ダンガンノーツ";
-		info.FontName = L"UD デジタル 教科書体 NK-B";
-		info.EdgeSize = 6;
-		info.FontSize = 64;
-		info.Width = 800;
-		info.Height = 130;
-		
+		//ImageTextInfo info;
+		//info.Text = L"ダンガンノーツ";
+		//info.FontName = L"UD デジタル 教科書体 NK-B";
+		//info.EdgeSize = 6;
+		//info.FontSize = 64;
+		//info.Width = 800;
+		//info.Height = 130;
+		//int a = ImageLoadControl::GetInstance().CreateTextImageHandle(info);
 		//MyMessageBox::GetInstance().Start();
 		//auto messageInfo = new MyMessageBoxInfo();
 		//auto messageItemInfo = MyMessageBoxItemInfo();
@@ -79,7 +76,7 @@ namespace Tatelier {
 
 	void Supervision::Draw()
 	{
-		this->m_pSceneControl->Draw();
+		//this->m_pSceneControl->Draw();
 		MyMessageBox::GetInstance().Draw();
 	}
 
