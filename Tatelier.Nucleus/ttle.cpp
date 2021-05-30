@@ -53,7 +53,7 @@ namespace ttle {
 			return TL_SUCCESS;
 		}
 
-		int Path::Combine(const std::string& path1
+		TLRESULT Path::Combine(const std::string& path1
 			, const std::string& path2
 			, std::string* result)
 		{
@@ -69,7 +69,7 @@ namespace ttle {
 			return TL_SUCCESS;
 		}
 
-		int Path::Combine(const std::string& path1
+		TLRESULT Path::Combine(const std::string& path1
 			, const std::string& path2
 			, const std::string& path3
 			, std::string* result)
@@ -87,7 +87,7 @@ namespace ttle {
 			return TL_SUCCESS;
 		}
 
-		int Path::Combine(const std::string& path1
+		TLRESULT Path::Combine(const std::string& path1
 			, const std::string& path2
 			, const std::string& path3
 			, const std::string& path4

@@ -29,16 +29,16 @@ namespace ttle {
 	namespace io {
 		class Path {
 		public:
-			static int Combine(const std::string& path1
+			static TLRESULT Combine(const std::string& path1
 				, const std::string& path2
 				, std::string* result);
 
-			static int Combine(const std::string& path1
+			static TLRESULT Combine(const std::string& path1
 				, const std::string& path2
 				, const std::string& path3
 				, std::string* result);
 
-			static int Combine(const std::string& path1
+			static TLRESULT Combine(const std::string& path1
 				, const std::string& path2
 				, const std::string& path3
 				, const std::string& path4
