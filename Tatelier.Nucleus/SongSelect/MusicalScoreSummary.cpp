@@ -11,18 +11,24 @@
 
 using namespace ttle::io;
 
+
+#define MAP_ITEM(name, readFunc) { name, std::bind(readFunc, std::placeholders::_1, std::placeholders::_2) }
+
 namespace Tatelier::SongSelect {
 
 	std::unordered_map<std::string, std::function<TLRESULT(MusicalScoreSummary*, const std::string&)>> MusicalScoreSummary::map {
-		{ "TITLE", std::bind(&MusicalScoreSummary::SetReadTitle, std::placeholders::_1, std::placeholders::_2) }
+		MAP_ITEM("TITLE", &MusicalScoreSummary::SetReadTitle),
+		MAP_ITEM("WAVE", &MusicalScoreSummary::SetWaveFilePath),
 	};
 
 	MusicalScoreSummary::MusicalScoreSummary(const std::string& rootFolder, const std::string& relativeFilePath)
 	{
 		std::string path;
 		if (Path::Combine(rootFolder, relativeFilePath, &path) != TL_SUCCESS) {
-
+			// TODO: ƒGƒ‰[ˆ—
 		}
+
+		filePathRelative = relativeFilePath;
 		MusicalScoreSummary::MusicalScoreSummary(path);
 	}
 
@@ -38,9 +44,27 @@ namespace Tatelier::SongSelect {
 		return TL_SUCCESS;
 	}
 
+	const std::string& MusicalScoreSummary::GetWaveFilePath()
+	{
+		return waveFilePath;
+	}
+
+	TLRESULT MusicalScoreSummary::SetWaveFilePath(const std::string& waveFilePath)
+	{
+		this->waveFilePath = waveFilePath;
+		return TL_SUCCESS;
+	}
+
 	TLRESULT MusicalScoreSummary::SetReadTitle(const std::string& arg)
 	{
 		this->title = arg;
+
+		return TL_SUCCESS;
+	}
+
+	TLRESULT MusicalScoreSummary::SetReadWaveFilePath(const std::string& arg)
+	{
+		this->waveFilePath = arg;
 
 		return TL_SUCCESS;
 	}
