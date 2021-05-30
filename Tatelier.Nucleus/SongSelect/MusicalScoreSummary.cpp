@@ -16,7 +16,7 @@ using namespace ttle::io;
 
 namespace Tatelier::SongSelect {
 
-	std::unordered_map<std::string, std::function<TLRESULT(MusicalScoreSummary*, const std::string&)>> MusicalScoreSummary::map {
+	std::unordered_map<std::string, std::function<TLRESULT(MusicalScoreSummary*, const std::string&)>> MusicalScoreSummary::funcMap {
 		MAP_ITEM("TITLE", &MusicalScoreSummary::SetReadTitle),
 		MAP_ITEM("WAVE", &MusicalScoreSummary::SetWaveFilePath),
 	};
@@ -85,8 +85,8 @@ namespace Tatelier::SongSelect {
 
 		for (auto& line : lines) {
 			if (std::regex_match(line, matches, regex)) {
-				if (map.find(matches[1]) != map.end()) {
-					map[matches[1]](this, matches[2]);
+				if (funcMap.find(matches[1]) != funcMap.end()) {
+					funcMap[matches[1]](this, matches[2]);
 				}
 			}
 		}

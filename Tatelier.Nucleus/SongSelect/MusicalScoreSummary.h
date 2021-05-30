@@ -13,7 +13,6 @@ namespace Tatelier::SongSelect {
 
 	class MusicalScoreSummary {
 	public:
-		static std::unordered_map<std::string, std::function<TLRESULT(MusicalScoreSummary*, const std::string&)>> map;
 		MusicalScoreSummary(const std::string& rootFolder, const std::string& relativeFilePath);
 
 		const std::string& GetTitle();
@@ -22,6 +21,7 @@ namespace Tatelier::SongSelect {
 		const std::string& GetWaveFilePath();
 		TLRESULT SetWaveFilePath(const std::string& waveFilePath);
 	private:
+		static std::unordered_map<std::string, std::function<TLRESULT(MusicalScoreSummary*, const std::string&)>> funcMap;
 		std::string filePathRelative;
 		std::string title;
 		std::string waveFilePath;
