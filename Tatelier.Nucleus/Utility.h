@@ -49,17 +49,6 @@ namespace Tatelier {
 	int32_t ttleEndWithIndex(const std::string& s, const std::string& suffixSplit);
 
 	/**
-	 * @brief 指定したディレクトリ内をサブディレクトリまで探索し、ファイル一覧を取得する
-	 *
-	 * @param [in] folderPath 探索ディレクトリのパス
-	 * @param [out] 結果ファイル一覧
-	 * @param [in] フィルタ関数
-	 *
-	 * @return TL_SUCCESS: 成功
-	 */
-	uint32_t ttleGetFileNamesRecursive(const std::string& folderPath, std::vector<std::string>* file_names, std::function<bool(const std::string&)> filter);
-
-	/**
 	 * @brief UTF8の文字列をSJISに変換する
 	 *
 	 * @param srcUTF8 [in] UTF8の文字列

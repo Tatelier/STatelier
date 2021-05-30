@@ -49,30 +49,6 @@ namespace Tatelier {
 		return 0;
 	}
 
-	TLRESULT ttleGetFileNamesRecursive(const std::string& folderPath, std::vector<std::string>* file_names, std::function<bool(const std::string&)> filter)
-	{
-		if (!std::filesystem::exists(folderPath))
-			return true;
-
-		std::filesystem::recursive_directory_iterator iter(folderPath), end;
-		std::error_code err;
-
-		for (; iter != end && !err; iter.increment(err)) {
-			const std::filesystem::directory_entry entry = *iter;
-
-			std::string path = entry.path().string();
-
-			if (filter(path)) {
-				file_names->push_back(path);
-			}
-		}
-
-		if (err) {
-			return TL_ERROR_ERROR;
-		}
-		return TL_SUCCESS;
-	}
-
 	std::string ttleUTF8toSjis(const std::string& srcUTF8)
 	{
 		//Unicode‚Ö•ÏŠ·Œã‚Ì•¶Žš—ñ’·‚ð“¾‚é

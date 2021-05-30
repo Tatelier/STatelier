@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <functional>
 
 namespace ttle {
 
@@ -49,6 +50,20 @@ namespace ttle {
 		public:
 			static TLRESULT ReadAllLines(const std::string& filePath, std::vector<std::string>* lines);
 			static TLRESULT ReadAllText(const std::string& filePath, std::string* text);
+		};
+
+		class Dictionary {
+		public:
+			/**
+			 * @brief 指定したディレクトリ内をサブディレクトリまで探索し、ファイル一覧を取得する
+			 *
+			 * @param [in] folderPath 探索ディレクトリのパス
+			 * @param [out] 結果ファイル一覧
+			 * @param [in] フィルタ関数
+			 *
+			 * @return TL_SUCCESS: 成功
+			 */
+			static TLRESULT GetFileListRecursive(const std::string& folderPath, std::vector<std::string>* fileNameList, std::function<bool(const std::string&)> filter);
 		};
 	}
 }

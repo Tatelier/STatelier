@@ -106,6 +106,35 @@ namespace ttle {
 
 			return TL_SUCCESS;
 		}
+		TLRESULT Dictionary::GetFileListRecursive(const std::string& folderPath, std::vector<std::string>* fileNameList, std::function<bool(const std::string&)> filter)
+		{
+			const TLRESULT ERROR = 0x80000000;
+			const TLRESULT ERROR_NOT_FOUND = 0x80000001;
+
+			if (!std::filesystem::exists(folderPath))
+			{
+				return ERROR_NOT_FOUND;
+			}
+
+			std::filesystem::recursive_directory_iterator iter(folderPath), end;
+			std::error_code err;
+
+			for (; iter != end && !err; iter.increment(err)) {
+				const std::filesystem::directory_entry entry = *iter;
+
+				std::string path = entry.path().string();
+
+				if (filter(path)) {
+					fileNameList->push_back(path);
+				}
+			}
+
+			if (err) {
+				return ERROR;
+			}
+
+			return TL_SUCCESS;
+		}
 	}
 }
 
