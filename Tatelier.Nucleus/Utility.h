@@ -7,6 +7,8 @@
 #include <vector>
 #include "ttle.h"
 
+using namespace ttle;
+
 namespace Tatelier {
 
 	/**
@@ -89,33 +91,4 @@ namespace Tatelier {
 	*/
 	std::string ttleReplaceString(const std::string& source, const std::string& oldString, const std::string& newString);
 
-
-	/**
-	* @brief パス結合した文字列を返す
-	*
-	* @param path1 [in] path1
-	* @param path2 [in] path2
-	* @return std::string 結合した文字列
-	*/
-	std::string ttlePathCombineString(const std::string& path1, const std::string& path2);
-
-	/**
-	* @brief パス結合した文字列を返す
-	*
-	* @param path1 [in] path1
-	* @param path2 [in] path2
-	* @param path3 [in] path3
-	* @return std::string 結合した文字列
-	*/
-	std::string ttlePathCombineString(const std::string& path1, const std::string& path2, const std::string& path3);
-
-	/**
-	* @brief パス結合した文字列を返す
-	*
-	* @param path1 [in] ファイルパス
-	* @param path2 [out] 取得したテキスト
-	* 
-	* @return std::string 結合した文字列
-	*/
-	TLRESULT ttleFileAllText(const std::string& filePath, std::string* text);
 }

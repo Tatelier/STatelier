@@ -265,43 +265,5 @@ namespace Tatelier {
 		return s;
 	}
 
-	std::string ttlePathCombineString(const std::string& path1, const std::string& path2)
-	{
-		using namespace std::filesystem;
 
-		path path;
-
-		path /= path1;
-		path /= path2;
-
-		return path.string();
-	}
-
-	std::string ttlePathCombineString(const std::string& path1, const std::string& path2, const std::string& path3)
-	{
-		using namespace std::filesystem;
-
-		path path;
-
-		path /= path1;
-		path /= path2;
-		path /= path3;
-
-		return path.string();
-	}
-	TLRESULT ttleFileAllText(const std::string& filePath, std::string* text)
-	{
-		std::ostringstream ss;
-		std::ifstream ifs(filePath);
-
-		if (!ifs.is_open()) {
-			// TODO: ƒGƒ‰[ˆ—
-		}
-
-		ss << ifs.rdbuf();
-
-		*text = ss.str();
-
-		return TL_SUCCESS;
-	}
 }

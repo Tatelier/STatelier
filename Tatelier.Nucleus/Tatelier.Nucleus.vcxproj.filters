@@ -43,6 +43,7 @@
     <ClCompile Include="ImageCreateControl.cpp" />
     <ClCompile Include="SongSelect\ItemControl2.cpp" />
     <ClCompile Include="SongSelect\MusicalScoreSummary.cpp" />
+    <ClCompile Include="ttle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthConnect\AuthConnectScene.h" />
