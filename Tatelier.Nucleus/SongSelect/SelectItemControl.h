@@ -15,7 +15,7 @@ namespace Tatelier::SongSelect {
 	*/
 	class SelectItemControl {
 	public:
-		SelectItemControl(std::wstring folderPath, const Hjson::Value hjson);
+		SelectItemControl(std::string folderPath, const Hjson::Value hjson);
 
 		/**
 		* @brief インスタンスを生成する

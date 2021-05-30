@@ -1,6 +1,7 @@
 #include "SelectItemControl.h"
 
 #include "../Error.h"
+#include "../ttle.h"
 #include "GenreSelectItem.h"
 #include "ItemControl.h"
 #include "ScoreOverview.h"
@@ -10,6 +11,8 @@
 
 #include "../hjson/hjson-ex.h"
 #include "../hjson/hjson.h"
+
+
 
 namespace Tatelier::SongSelect {
 
@@ -50,6 +53,27 @@ namespace Tatelier::SongSelect {
 		this->folder = itemControl->GetScoreFolder();
 		this->imageRootFolder = imageRootFolder;
 		Set();
+	}
+	SelectItemControl::SelectItemControl(std::string folderPath, const Hjson::Value hjson)
+	{
+		using namespace ttle;
+
+		folderPath = std::filesystem::absolute(folderPath).string();
+
+		std::string filePath;
+		if (ttle::io::Path::Combine(folderPath, "Score.hjson", &filePath) != TL_SUCCESS)
+		{
+			// TODO: エラー処理
+		}
+
+		Hjson::Value hj;
+
+		if (std::filesystem::exists(filePath)) {
+			hj = HjsonEx::Load(filePath);
+		}
+		else {
+			// TODO: エラー処理
+		}
 	}
 	SelectItemControl* SelectItemControl::Create(std::shared_ptr<ItemControl> itemControl, const std::string& imageRootFolder)
 	{

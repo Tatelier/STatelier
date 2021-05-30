@@ -7,12 +7,14 @@
 
 #include "SongSelect/CategoryControl.h"
 
-#include "ImageLoadControl.h"
+#include "ImageCreateControl.h"
 #include "Input.h"
 
 #include "Utility.h"
 
 #include "MyMessageBox.h"
+#include "SongSelect\SelectItemControl.h"
+#include "SongSelect\ItemControl2.h"
 
 #pragma comment (lib, "gdiplus.lib")
 #pragma comment (lib, "ole32.lib")
@@ -37,11 +39,11 @@ namespace Tatelier {
 
 		this->m_pSceneControl = &SceneControlMaster::GetInstance();
 		this->m_pSceneControl->Start();
-		std::vector<std::string> list;
-		if (ttleGetFileNamesRecursive("Resources", &list, [](const std::string& a) {
-			return ttleEndWithIndex(a, ".tja|.tlscore") > 0;
-		})) {
-		}
+
+		SongSelect::ItemControl2 itemControl;
+		itemControl.Init("Resources\\Score");
+
+		SongSelect::SelectItemControl("Resources\\スコア", Hjson::Value());
 
 		ImageTextInfo info;
 		info.Text = L"ダンガンノーツ";
@@ -50,7 +52,7 @@ namespace Tatelier {
 		info.FontSize = 64;
 		info.Width = 800;
 		info.Height = 130;
-		int a = ImageLoadControl::GetInstance().CreateTextImageHandle(info);
+		
 		//MyMessageBox::GetInstance().Start();
 		//auto messageInfo = new MyMessageBoxInfo();
 		//auto messageItemInfo = MyMessageBoxItemInfo();
