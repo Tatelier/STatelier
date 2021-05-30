@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "STatelier": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
