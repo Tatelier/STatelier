@@ -13,6 +13,7 @@ namespace Tatelier::SongSelect {
 
 	uint32_t ItemControl2::Init(const std::string& scoreFolderPath)
 	{
+		using namespace ttle;
 		using namespace ttle::io;
 
 		std::filesystem::path scoreRootFolder;
@@ -24,7 +25,7 @@ namespace Tatelier::SongSelect {
 		std::vector<std::string> scoreFileList;
 
 		if (Dictionary::GetFileListRecursive(scoreRootFolder.string(), &scoreFileList, [this](std::string a) {
-			return ttleEndWithIndex(a, searchFilterExtensions) > 0;
+			return string::EndWith(a, searchFilterExtensions) > 0;
 		}) != TL_SUCCESS) {
 			// TODO: ƒGƒ‰[ˆ—
 		}

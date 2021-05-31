@@ -22,6 +22,7 @@ namespace Tatelier::SongSelect {
 	}
 	ItemControl::ItemControl(const std::string& scoreFolder, std::shared_ptr<CategoryControl> categoryControl)
 	{
+		using namespace ttle;
 		using namespace ttle::io;
 
 		this->scoreFolder = scoreFolder;
@@ -43,7 +44,7 @@ namespace Tatelier::SongSelect {
 
 		std::vector<std::string> files;
 		if (Dictionary::GetFileListRecursive(scoreRootFolder.string(), &files, [](std::string a) {
-			return ttleEndWithIndex(a, ".tja|.tlscore") > 0;
+			return string::EndWithIndex(a, ".tja|.tlscore") > 0;
 			})) {
 			for (auto& str : files) {
 				ScoreOverview::CreateAndRegist(scoreFolder, str, categoryControl);

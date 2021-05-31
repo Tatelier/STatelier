@@ -11,6 +11,42 @@ namespace ttle {
 
 	constexpr TLRESULT TL_SUCCESS = 0;
 
+
+	namespace string {
+
+		/**
+		 * @brief •¶š—ñ‚ª‘O•ûˆê’v‚µ‚Ä‚¢‚é‚©”»’è‚·‚éB
+		 * @param text ŒŸõ‘ÎÛ
+		 * @param suffix ŒŸõ‚·‚é•¶š—ñ
+		 * @return true: ˆê’v, false: •sˆê’v
+		*/
+		bool StartWith(const std::string& s, const std::string& prefix);
+
+		/**
+		 * @brief •¶š—ñ‚ªŒã•ûˆê’v‚µ‚Ä‚¢‚é‚©”»’è‚µAˆê’v‰ÓŠ‚Ìæ“ª—v‘f”Ô†‚ğ•Ô‚·B
+		 * @param text ŒŸõ‘ÎÛ
+		 * @param suffixSplit ŒŸõ‚·‚é•¶š—ñ
+		 * @return >= 0: ˆê’v‰ÓŠ‚Ìæ“ª—v‘f”Ô†, -1: •sˆê’v
+		*/
+		int32_t StartWithIndex(const std::string& text, const std::string& suffixSplit);
+
+		/**
+		 * @brief •¶š—ñ‚ªŒã•ûˆê’v‚µ‚Ä‚¢‚é‚©”»’è‚·‚éB
+		 * @param text ŒŸõ‘ÎÛ
+		 * @param suffix ŒŸõ‚·‚é•¶š—ñ
+		 * @return true: ˆê’v, false: •sˆê’v
+		*/
+		bool EndWith(const std::string& text, const std::string& suffix);
+
+		/**
+		 * @brief •¶š—ñ‚ªŒã•ûˆê’v‚µ‚Ä‚¢‚é‚©”»’è‚µAˆê’v‰ÓŠ‚Ìæ“ª—v‘f”Ô†‚ğ•Ô‚·B
+		 * @param text ŒŸõ‘ÎÛ
+		 * @param suffixSplit ŒŸõ‚·‚é•¶š—ñ
+		 * @return >= 0: ˆê’v‰ÓŠ‚Ìæ“ª—v‘f”Ô†, -1: •sˆê’v
+		*/
+		int32_t EndWithIndex(const std::string& text, const std::string& suffixSplit);
+	}
+
 	namespace text {
 		class Encoding {
 		public:

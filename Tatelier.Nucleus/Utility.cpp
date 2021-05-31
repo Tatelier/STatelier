@@ -19,35 +19,6 @@ namespace Tatelier {
 
 	constexpr TLRESULT TL_ERROR_ERROR = 0x80000001;
 
-	bool ttleStartWith(const std::string& s, const std::string& prefix)
-	{
-		auto size = prefix.size();
-		if (s.size() < size)
-			return false;
-		return std::equal(std::begin(prefix), std::end(prefix), std::begin(s));
-	}
-
-	bool ttleEndWith(const std::string& s, const std::string& suffix)
-	{
-		if (s.size() < suffix.size())
-			return false;
-		return std::equal(std::rbegin(suffix), std::rend(suffix), std::rbegin(s));
-	}
-
-	int32_t ttleEndWithIndex(const std::string& s, const std::string& suffixSplit)
-	{
-
-		std::stringstream ss{ suffixSplit };
-		std::string buf;
-
-		for (int i = 1; std::getline(ss, buf, '|'); i++) {
-			if (ttleEndWith(s, buf)) {
-				return i;
-			}
-		}
-
-		return 0;
-	}
 
 	std::string ttleUTF8toSjis(const std::string& srcUTF8)
 	{

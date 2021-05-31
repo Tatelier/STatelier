@@ -29,26 +29,6 @@ namespace Tatelier {
 	};
 
 	/**
-	 * @brief •¶š—ñ‚ª‘O•ûˆê’v‚µ‚Ä‚¢‚é‚©‚ğ”»’è‚·‚é
-	 *
-	 * @param s [in] ‘ÎÛ‚Ì•¶š—ñ
-	 * @param suffix [in] ˆê’v•¶š—ñ
-	 * @return true:ˆê’v, false:•sˆê’v
-	 */
-	bool ttleStartWith(const std::string& s, const std::string& prefix);
-
-	/**
-	 * @brief •¶š—ñ‚ªŒã•ûˆê’v‚µ‚Ä‚¢‚é‚©‚ğ”»’è‚·‚é
-	 *
-	 * @param s [in] ‘ÎÛ‚Ì•¶š—ñ
-	 * @param suffix [in] ˆê’v•¶š—ñ
-	 * @return true:ˆê’v, false:•sˆê’v
-	 */
-	bool ttleEndWith(const std::string& s, const std::string& suffix);
-
-	int32_t ttleEndWithIndex(const std::string& s, const std::string& suffixSplit);
-
-	/**
 	 * @brief UTF8‚Ì•¶š—ñ‚ğSJIS‚É•ÏŠ·‚·‚é
 	 *
 	 * @param srcUTF8 [in] UTF8‚Ì•¶š—ñ

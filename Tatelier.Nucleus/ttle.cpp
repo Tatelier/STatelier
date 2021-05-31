@@ -1,5 +1,6 @@
 #include "ttle.h"
 
+#include <cstdint>
 
 #include <vector>
 #include <iterator>
@@ -146,3 +147,46 @@ namespace ttle::text::EncodingItem {
 	}
 }
 
+bool ttle::string::StartWith(const std::string& s, const std::string& prefix)
+{
+	auto size = prefix.size();
+	if (s.size() < size)
+		return false;
+	return std::equal(std::begin(prefix), std::end(prefix), std::begin(s));
+}
+
+int32_t ttle::string::StartWithIndex(const std::string& text, const std::string& suffixSplit)
+{
+	std::stringstream ss{ suffixSplit };
+	std::string buf;
+
+	for (int i = 1; std::getline(ss, buf, '|'); i++) {
+		if (StartWith(text, buf)) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+bool ttle::string::EndWith(const std::string& s, const std::string& suffix)
+{
+	if (s.size() < suffix.size()) {
+		return false;
+	}
+	return std::equal(std::rbegin(suffix), std::rend(suffix), std::rbegin(s));
+}
+
+int32_t ttle::string::EndWithIndex(const std::string& text, const std::string& suffixSplit)
+{
+	std::stringstream ss{ suffixSplit };
+	std::string buf;
+
+	for (int i = 1; std::getline(ss, buf, '|'); i++) {
+		if (EndWith(text, buf)) {
+			return i;
+		}
+	}
+
+	return -1;
+}

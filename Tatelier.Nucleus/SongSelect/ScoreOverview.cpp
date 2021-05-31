@@ -43,7 +43,7 @@ namespace Tatelier::SongSelect {
 		while (!ifs.eof()) {
 			if (std::getline(ifs, buf)) {
 				for (int i = 0; i < ARRAY_SIZE(k); i++) {
-					if (ttleStartWith(buf.c_str(), k[i].Name.c_str())) {
+					if (ttle::string::StartWith(buf.c_str(), k[i].Name.c_str())) {
 						k[i].Func(buf.replace(buf.find(k[i].Name), k[i].Name.size(), ""));
 					}
 				}
@@ -82,9 +82,10 @@ namespace Tatelier::SongSelect {
 	}
 	ScoreOverview* ScoreOverview::CreateAndRegist(const std::filesystem::path& scoreFolderPath, const std::filesystem::path& relativeFilePath, std::shared_ptr<CategoryControl> categoryControl)
 	{
+		using namespace ttle;
 
 		FileType type;
-		switch (ttleEndWithIndex(relativeFilePath.string(), ".tja|.tlscore")) {
+		switch (string::EndWithIndex(relativeFilePath.string(), ".tja|.tlscore")) {
 		case 1:
 			type = FileType::TJA;
 			break;
