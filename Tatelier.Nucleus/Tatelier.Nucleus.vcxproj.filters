@@ -44,6 +44,7 @@
     <ClCompile Include="SongSelect\ItemControl2.cpp" />
     <ClCompile Include="SongSelect\MusicalScoreSummary.cpp" />
     <ClCompile Include="ttle.cpp" />
+    <ClCompile Include="SongSelect\Course.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthConnect\AuthConnectScene.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="SongSelect\ItemControl2.h" />
     <ClInclude Include="ttle.h" />
     <ClInclude Include="SongSelect\MusicalScoreSummary.h" />
+    <ClInclude Include="SongSelect\Course.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
