@@ -39,8 +39,6 @@ namespace Tatelier {
 		this->m_pSceneControl = &SceneControlMaster::GetInstance();
 		this->m_pSceneControl->Start();
 
-		SongSelect::ItemControl2 itemControl2;
-		itemControl2.Init("Resources\\Score");
 
 		//ImageTextInfo info;
 		//info.Text = L"ƒ_ƒ“ƒKƒ“ƒm[ƒc";

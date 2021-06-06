@@ -12,6 +12,7 @@
 #include "Demo.h"
 #include "Item.h"
 #include "ItemControl.h"
+#include "ItemControl2.h"
 #include "SelectItem.h"
 #include "SelectItemControl.h"
 
@@ -33,6 +34,13 @@ namespace Tatelier::SongSelect {
 		std::filesystem::path path;
 		path /= MainConfig::GetInstance().GetThemeFolderPath();
 		path /= "SongSelect/SongSelectConfig.hjson";
+
+
+		ItemControl2* pItemControl2 = new ItemControl2();
+		pItemControl2->Init("Resources\\Score");
+
+		delete pItemControl2;
+
 
 		auto hjson = HjsonEx::Load(path.string());
 
