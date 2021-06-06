@@ -21,7 +21,12 @@ namespace Tatelier::SongSelect {
 		MAP_ITEM("WAVE", &MusicalScoreSummary::SetWaveFilePath),
 	};
 
-	MusicalScoreSummary::MusicalScoreSummary(const std::string& rootFolder, const std::string& relativeFilePath)
+	MusicalScoreSummary::MusicalScoreSummary()
+	{
+
+	}
+
+	TLRESULT MusicalScoreSummary::Init(const std::string& rootFolder, const std::string& relativeFilePath)
 	{
 		std::string path;
 		if (Path::Combine(rootFolder, relativeFilePath, &path) != TL_SUCCESS) {
@@ -29,7 +34,8 @@ namespace Tatelier::SongSelect {
 		}
 
 		filePathRelative = relativeFilePath;
-		MusicalScoreSummary::MusicalScoreSummary(path);
+
+		return Init(path);
 	}
 
 	const std::string& MusicalScoreSummary::GetTitle()
@@ -92,5 +98,7 @@ namespace Tatelier::SongSelect {
 		}
 
 		EncodingType type = ttleGetEncodingType(text);
+
+		return TL_SUCCESS;
 	}
 }

@@ -13,7 +13,8 @@ namespace Tatelier::SongSelect {
 
 	class MusicalScoreSummary {
 	public:
-		MusicalScoreSummary(const std::string& rootFolder, const std::string& relativeFilePath);
+		MusicalScoreSummary();
+		TLRESULT Init(const std::string& rootFolder, const std::string& relativeFilePath);
 
 		const std::string& GetTitle();
 		TLRESULT SetTitle(const std::string& title);
@@ -29,6 +30,6 @@ namespace Tatelier::SongSelect {
 		TLRESULT SetReadTitle(const std::string& arg);
 		TLRESULT SetReadWaveFilePath(const std::string& arg);
 
-		MusicalScoreSummary(const std::string& filePath);
+		TLRESULT Init(const std::string& filePath);
 	};
 }
