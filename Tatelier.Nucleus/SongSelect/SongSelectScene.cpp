@@ -13,6 +13,7 @@
 #include "Item.h"
 #include "ItemControl.h"
 #include "ItemControl2.h"
+#include "GenreControl.h"
 #include "SelectItem.h"
 #include "SelectItemControl.h"
 
@@ -40,6 +41,9 @@ namespace Tatelier::SongSelect {
 		pItemControl2->Init("Resources\\Score");
 
 		delete pItemControl2;
+
+		GenreControl* pGenreControl = new GenreControl();
+		pGenreControl->Init("Resources\\Score\\Score.hjson");
 
 
 		auto hjson = HjsonEx::Load(path.string());

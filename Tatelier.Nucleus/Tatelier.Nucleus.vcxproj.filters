@@ -45,6 +45,7 @@
     <ClCompile Include="SongSelect\MusicalScoreSummary.cpp" />
     <ClCompile Include="ttle.cpp" />
     <ClCompile Include="SongSelect\Course.cpp" />
+    <ClCompile Include="SongSelect\GenreControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthConnect\AuthConnectScene.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="ttle.h" />
     <ClInclude Include="SongSelect\MusicalScoreSummary.h" />
     <ClInclude Include="SongSelect\Course.h" />
+    <ClInclude Include="SongSelect\GenreControl.h" />
     <ClInclude Include="ttle.define.h" />
   </ItemGroup>
   <ItemGroup>
