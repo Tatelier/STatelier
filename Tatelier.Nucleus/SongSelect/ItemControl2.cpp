@@ -11,31 +11,42 @@ namespace Tatelier::SongSelect {
 	{
 	}
 
+	ItemControl2::~ItemControl2()
+	{
+		for (auto& item : scoreList) {
+			delete item;
+		}
+	}
+
 	uint32_t ItemControl2::Init(const std::string& scoreFolderPath)
 	{
 		using namespace ttle;
 		using namespace ttle::io;
 
-		std::filesystem::path scoreRootFolder;
+		std::string rootRootFolderPath;
 
-		scoreRootFolder /= scoreFolderPath;
-		scoreRootFolder /= rootFolderName;
-		scoreRootFolder /= "";
+		if (Path::Combine(scoreFolderPath, rootFolderName, "", &rootRootFolderPath) != TL_SUCCESS) {
+			// TODO: エラー処理
+		}
 
 		std::vector<std::string> scoreFileList;
 
-		if (Dictionary::GetFileListRecursive(scoreRootFolder.string(), &scoreFileList, [this](std::string a) {
-			return string::EndWith(a, searchFilterExtensions) > 0;
+		if (Dictionary::GetFileListRecursive(rootRootFolderPath, &scoreFileList, [this](std::string a) {
+			return string::EndWithIndex(a, searchFilterExtensions) > 0;
 		}) != TL_SUCCESS) {
 			// TODO: エラー処理
 		}
 
 		if (scoreFileList.size() > 0) {
-			for (auto& item : scoreFileList) {
-							
-				item = ttleReplaceString(item, scoreRootFolder.string(), "");
-				auto* summary = new MusicalScoreSummary(scoreRootFolder.string(), item);
-				delete summary;
+			for (auto& item : scoreFileList) {				
+
+				if (ttle::string::Replace(item, rootRootFolderPath, "", &item) != TL_SUCCESS)
+				{
+					// TODO: エラー処理
+				}
+				auto* summary = new MusicalScoreSummary();
+				summary->Init(rootRootFolderPath, item);
+				scoreList.push_back(summary);
 			}
 		}
 
