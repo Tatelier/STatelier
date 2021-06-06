@@ -20,7 +20,7 @@ namespace ttle {
 		 * @param suffix ŒŸõ‚·‚é•¶š—ñ
 		 * @return true: ˆê’v, false: •sˆê’v
 		*/
-		bool StartWith(const std::string& s, const std::string& prefix);
+		bool StartWith(const std::string& text, const std::string& prefix);
 
 		/**
 		 * @brief •¶š—ñ‚ªŒã•ûˆê’v‚µ‚Ä‚¢‚é‚©”»’è‚µAˆê’v‰ÓŠ‚Ìæ“ª—v‘f”Ô†‚ğ•Ô‚·B
@@ -41,10 +41,22 @@ namespace ttle {
 		/**
 		 * @brief •¶š—ñ‚ªŒã•ûˆê’v‚µ‚Ä‚¢‚é‚©”»’è‚µAˆê’v‰ÓŠ‚Ìæ“ª—v‘f”Ô†‚ğ•Ô‚·B
 		 * @param text ŒŸõ‘ÎÛ
-		 * @param suffixSplit ŒŸõ‚·‚é•¶š—ñ
+		 * @param suffixSplit ŒŸõ‚·‚é•¶š—ñ —á) *.tja|*.tlscore
 		 * @return >= 0: ˆê’v‰ÓŠ‚Ìæ“ª—v‘f”Ô†, -1: •sˆê’v
 		*/
 		int32_t EndWithIndex(const std::string& text, const std::string& suffixSplit);
+
+		/**
+		* @brief •¶š—ñ‚ğ’uŠ·‚·‚é
+		* @todo ƒRƒƒ“ƒg‚¿‚á‚ñ‚Æ‘‚­
+		*/
+		TLRESULT Replace(const std::string& text, const std::string& oldValue, const std::string& newValue, std::string* result);
+	
+		/**
+		* @brief •¶š—ñ‚ğ•ªŠ„‚·‚é
+		* @todo ƒRƒƒ“ƒg‚¿‚á‚ñ‚Æ‘‚­
+		*/
+		TLRESULT Split(const std::string& text, const std::string& separator, std::vector<std::string>* result);
 	}
 
 	namespace text {

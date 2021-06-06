@@ -58,6 +58,7 @@ namespace Tatelier {
 	* @param text [in] 文字列
 	* @return EncodingType 文字エンコード
 	*/
+	[[deprecated("please use ttle::string::replace")]]
 	std::string ttleReplaceString(const std::string& source, const std::string& oldString, const std::string& newString);
 
 }

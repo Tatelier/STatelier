@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <iterator>
+#include <string>
 
 #include <filesystem>
 #include <fstream>
@@ -147,46 +148,80 @@ namespace ttle::text::EncodingItem {
 	}
 }
 
-bool ttle::string::StartWith(const std::string& s, const std::string& prefix)
-{
-	auto size = prefix.size();
-	if (s.size() < size)
-		return false;
-	return std::equal(std::begin(prefix), std::end(prefix), std::begin(s));
-}
+namespace ttle::string {
 
-int32_t ttle::string::StartWithIndex(const std::string& text, const std::string& suffixSplit)
-{
-	std::stringstream ss{ suffixSplit };
-	std::string buf;
+	bool StartWith(const std::string& s, const std::string& prefix)
+	{
+		auto size = prefix.size();
+		if (s.size() < size)
+			return false;
+		return std::equal(std::begin(prefix), std::end(prefix), std::begin(s));
+	}
 
-	for (int i = 1; std::getline(ss, buf, '|'); i++) {
-		if (StartWith(text, buf)) {
-			return i;
+	int32_t StartWithIndex(const std::string& text, const std::string& suffixSplit)
+	{
+		std::stringstream ss{ suffixSplit };
+		std::string buf;
+
+		for (int i = 1; std::getline(ss, buf, '|'); i++) {
+			if (StartWith(text, buf)) {
+				return i;
+			}
 		}
+
+		return -1;
 	}
 
-	return -1;
-}
-
-bool ttle::string::EndWith(const std::string& s, const std::string& suffix)
-{
-	if (s.size() < suffix.size()) {
-		return false;
-	}
-	return std::equal(std::rbegin(suffix), std::rend(suffix), std::rbegin(s));
-}
-
-int32_t ttle::string::EndWithIndex(const std::string& text, const std::string& suffixSplit)
-{
-	std::stringstream ss{ suffixSplit };
-	std::string buf;
-
-	for (int i = 1; std::getline(ss, buf, '|'); i++) {
-		if (EndWith(text, buf)) {
-			return i;
+	bool EndWith(const std::string& s, const std::string& suffix)
+	{
+		if (s.size() < suffix.size()) {
+			return false;
 		}
+		return std::equal(std::rbegin(suffix), std::rend(suffix), std::rbegin(s));
 	}
 
-	return -1;
+	int32_t EndWithIndex(const std::string& text, const std::string& suffixSplit)
+	{
+		std::stringstream ss{ suffixSplit };
+		std::string buf;
+
+		for (int i = 1; std::getline(ss, buf, '|'); i++) {
+			if (EndWith(text, buf)) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	TLRESULT Replace(const std::string& source, const std::string& oldValue, const std::string& newValue, std::string* result)
+	{
+		*result = source;
+
+		if (!oldValue.empty()) {
+			std::string::size_type pos = 0;
+			while ((pos = result->find(oldValue, pos)) != std::string::npos) {
+				result->replace(pos, oldValue.length(), newValue);
+				pos += newValue.length();
+			}
+		}
+		return 0;
+	}
+
+	TLRESULT Split(const std::string& text, const std::string& separator, std::vector<std::string>* result)
+	{
+		std::string tstr = text + separator;
+
+		size_t l = tstr.length();
+		size_t sl = separator.length();
+
+		std::string::size_type pos = 0, prev = 0;
+
+		for (; pos < l && (pos = tstr.find(separator, pos)) != std::string::npos; prev = (pos += sl)) {
+			std::string item = tstr.substr(prev, pos - prev);
+			result->push_back(item);
+		}
+
+		return TL_SUCCESS;
+	}
 }
