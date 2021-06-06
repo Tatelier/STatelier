@@ -9,10 +9,6 @@
 
 namespace Tatelier::SongSelect {
 	class CategoryControl {
-		const char* const OtherCategoryKeyName = "\r";
-		std::unordered_map<std::string, std::shared_ptr<SongSelect::Category>> categoryMap;
-		std::string imageRootFolder;
-
 	public:
 		static CategoryControl* Create(const std::string& filePath);
 		std::vector<std::shared_ptr<SongSelect::Category>> Get(const std::vector<std::string>& names);
@@ -21,6 +17,11 @@ namespace Tatelier::SongSelect {
 		const std::unordered_map<std::string, std::shared_ptr<SongSelect::Category>>& GetCategoryMap();
 		void Init(const std::string& filePath);
 		~CategoryControl();
+	private:
+		const char* const OtherCategoryKeyName = "\r";
+		std::unordered_map<std::string, std::shared_ptr<SongSelect::Category>> categoryMap;
+		std::string imageRootFolder;
+
 	};
 
 }
