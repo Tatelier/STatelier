@@ -90,6 +90,7 @@
     <ClInclude Include="ttle.h" />
     <ClInclude Include="SongSelect\MusicalScoreSummary.h" />
     <ClInclude Include="SongSelect\Course.h" />
+    <ClInclude Include="ttle.define.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

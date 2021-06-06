@@ -5,7 +5,7 @@
 #include <functional>
 #include <unordered_map>
 
-#include "../ttle.h"
+#include "../ttle.define.h"
 
 using namespace ttle;
 

@@ -5,12 +5,9 @@
 #include <vector>
 #include <functional>
 
+#include "ttle.define.h"
+
 namespace ttle {
-
-	typedef unsigned int TLRESULT;
-
-	constexpr TLRESULT TL_SUCCESS = 0;
-
 
 	namespace string {
 
