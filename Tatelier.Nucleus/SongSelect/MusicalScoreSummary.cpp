@@ -18,7 +18,8 @@ namespace Tatelier::SongSelect {
 
 	std::unordered_map<std::string, std::function<TLRESULT(MusicalScoreSummary*, const std::string&)>> MusicalScoreSummary::funcMap {
 		MAP_ITEM("TITLE", &MusicalScoreSummary::SetReadTitle),
-		MAP_ITEM("WAVE", &MusicalScoreSummary::SetWaveFilePath),
+		MAP_ITEM("WAVE", &MusicalScoreSummary::SetReadWaveFilePath),
+		MAP_ITEM("GENRE", &MusicalScoreSummary::SetReadGenreNameList),
 	};
 
 	MusicalScoreSummary::MusicalScoreSummary()
@@ -61,6 +62,18 @@ namespace Tatelier::SongSelect {
 		return TL_SUCCESS;
 	}
 
+	const std::vector<std::string>& MusicalScoreSummary::GetGenreNameList()
+	{
+		return genreNameList;
+	}
+
+	TLRESULT MusicalScoreSummary::SetGenreNameList(const std::vector<std::string>& genreNameList)
+	{
+		this->genreNameList = genreNameList;
+
+		return TL_SUCCESS;
+	}
+
 	TLRESULT MusicalScoreSummary::SetReadTitle(const std::string& arg)
 	{
 		this->title = arg;
@@ -75,7 +88,17 @@ namespace Tatelier::SongSelect {
 		return TL_SUCCESS;
 	}
 
-	MusicalScoreSummary::MusicalScoreSummary(const std::string& filePath)
+	TLRESULT MusicalScoreSummary::SetReadGenreNameList(const std::string& arg)
+	{
+		if (ttle::string::Split(arg, "|", &genreNameList) != TL_SUCCESS)
+		{
+			// TODO: ÉGÉâÅ[èàóù
+		}
+
+		return TL_SUCCESS;
+	}
+
+	TLRESULT MusicalScoreSummary::Init(const std::string& filePath)
 	{
 		std::string text;
 
