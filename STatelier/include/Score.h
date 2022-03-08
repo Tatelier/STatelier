@@ -64,7 +64,7 @@ namespace STatelier::Score
 		bool TryGetValue(const std::string& line, const std::string& name, std::string* val);
 		
 		int SetBPMCHANGE(ScoreInnerInfo* innerInfo, const std::string& args);
-		
+		int SetMEASURE(ScoreInnerInfo* innerInfo, const std::string& arg);
 		
 		void OneMeasureLine(const std::vector<std::string>& list, ScoreInnerInfo* innerInfo);
 	};

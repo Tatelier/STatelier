@@ -21,7 +21,7 @@ namespace STatelier::Score
 	{
 		return m_kana;
 	}
-	std::shared_ptr<ScoreList> MusicalScore::CreateScoreList(const std::vector<CourseType> courseTypeList)
+	std::shared_ptr<ScoreList> MusicalScore::CreateScoreList(const std::vector<CourseType>& courseTypeList)
 	{
 		std::ifstream ifs(m_filePath);
 

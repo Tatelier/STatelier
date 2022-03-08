@@ -19,12 +19,12 @@ namespace STatelier::Score
 		void SetBPM(BPM* bpm);
 
 	private:
-		NoteType m_noteType;
+		NoteType m_noteType = NoteType::None;
 
-		BPM* m_bpm;
-		Note* m_pPrevNote;
-		Millisec m_startMillisec;
-		Millisec m_finishMillisec;
+		BPM* m_bpm = nullptr;
+		Note* m_pPrevNote = nullptr;
+		Millisec m_startMillisec = 0;
+		Millisec m_finishMillisec = 0;
 	};
 
 }

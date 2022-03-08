@@ -6,24 +6,15 @@
 
 namespace STatelier
 {
+	class IScene;
+
 	class Coroutine
 	{
 	public:
 		Coroutine()
 		{
 		}
-		void* Update()
-		{
-			const auto& iterator = m_generator.begin();
-
-			if (!iterator._Coro)
-			{
-				return (void*)-1;
-			}
-			auto promise = iterator._Coro.promise();
-
-			return (void*)*promise._Value;
-		}
+		void* Update();
 		bool IsEnabled()
 		{
 			return m_enabled;
@@ -33,9 +24,10 @@ namespace STatelier
 			m_enabled = enabled;
 		}
 		std::experimental::generator<void*> m_generator;
-		std::function<int(void*)> m_callback;
+		std::function<void(int, Coroutine*)> m_callback;
+		IScene* m_scene;
 	private:
-		bool m_enabled;
+		bool m_enabled = true;
 	};
 	class CoroutineControl
 	{
@@ -66,6 +58,7 @@ namespace STatelier
 
 					if ((int)result == -1)
 					{
+						coroutine->m_callback(0, coroutine);
 						if (m_coroutineFactory.Destory(coroutine) == 0)
 						{
 							i--;

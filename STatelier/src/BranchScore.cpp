@@ -6,11 +6,11 @@
 
 namespace STatelier::Score
 {
-	void BranchScore::Init(ScoreInnerInfo* innerInfo)
+	void BranchScore::Init(ScoreInnerInfo* pInnerInfo)
 	{
-		m_startMillisec = innerInfo->pivotMillisec;
-		AddBPM(innerInfo->pBPM);
-		AddMeasure(innerInfo->pMeasure);
+		m_startMillisec = pInnerInfo->pivotMillisec;
+		AddBPM(pInnerInfo->pBPM);
+		AddMeasure(pInnerInfo->pMeasure);
 	}
 	void BranchScore::Build()
 	{
@@ -35,5 +35,13 @@ namespace STatelier::Score
 	BPM* BranchScore::GetLastBPM()
 	{
 		return *m_pBPMList.rbegin();
+	}
+	Measure* BranchScore::GetFirstMeasure()
+	{
+		return *m_pMeasureList.begin();
+	}
+	Measure* BranchScore::GetLastMeasure()
+	{
+		return *m_pMeasureList.rbegin();
 	}
 }

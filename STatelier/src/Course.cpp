@@ -18,7 +18,7 @@ namespace STatelier::Score
 	{
 		m_courseType = courseType;
 	}
-	bool Course::TryGetCourseTypeFromText(const std::string& courseName, CourseType* courseType)
+	bool Course::TryGetCourseTypeFromText(const std::string& courseName, CourseType* pCourseType)
 	{
 		std::string courseNameUpper = courseName;
 
@@ -28,26 +28,26 @@ namespace STatelier::Score
 			|| "0" == courseNameUpper
 			)
 		{
-			*courseType = CourseType::Easy;
+			*pCourseType = CourseType::Easy;
 		}
 		else if ("NORMAL" == courseNameUpper
 			|| "1" == courseNameUpper
 			)
 		{
-			*courseType = CourseType::Normal;
+			*pCourseType = CourseType::Normal;
 		}
 		else if ("HARD" == courseNameUpper
 			|| "2" == courseNameUpper
 			)
 		{
-			*courseType = CourseType::Hard;
+			*pCourseType = CourseType::Hard;
 		}
 		else if ("VERYHARDA" == courseNameUpper
 			|| "3" == courseNameUpper
 			|| "ONI" == courseNameUpper
 			)
 		{
-			*courseType = CourseType::VeryHardA;
+			*pCourseType = CourseType::VeryHardA;
 		}
 		else if ("VERYHARDB" == courseNameUpper
 			|| "4" == courseNameUpper
@@ -55,7 +55,7 @@ namespace STatelier::Score
 			|| "EDIT" == courseNameUpper
 			)
 		{
-			*courseType = CourseType::VeryHardB;
+			*pCourseType = CourseType::VeryHardB;
 		}
 		else
 		{

@@ -1,5 +1,5 @@
 #include <Score.h>
-
+#include <regex>
 #include <functional>
 
 namespace STatelier::Score
@@ -10,11 +10,10 @@ namespace STatelier::Score
 
 	int Score::Load(ScoreInfo* info)
 	{
-		std::function<int(ScoreInnerInfo*, const std::string&)> func1 = std::bind(&Score::SetBPMCHANGE, this, std::placeholders::_1, std::placeholders::_2);
-
 		ScoreInnerInfo innerInfo;
 
-		innerInfo.functionTable.push_back(ScoreInnerInfo::FunctionTableItem("#BPMCHANGE", func1));
+		innerInfo.functionTable.push_back(ScoreInnerInfo::FunctionTableItem("#BPMCHANGE", std::bind(&Score::SetBPMCHANGE, this, std::placeholders::_1, std::placeholders::_2)));
+		innerInfo.functionTable.push_back(ScoreInnerInfo::FunctionTableItem("#MEASURE", std::bind(&Score::SetMEASURE, this, std::placeholders::_1, std::placeholders::_2)));
 
 		auto& ifs = *info->p_ifs;
 
@@ -186,6 +185,25 @@ namespace STatelier::Score
 			innerInfo->pBranchScore->GetLastBPM()->SetFinishMillisec(innerInfo->pivotMillisec);
 			innerInfo->pBranchScore->AddBPM(innerInfo->pBPM);
 		}
+		return 0;
+	}
+	int Score::SetMEASURE(ScoreInnerInfo* innerInfo, const std::string& arg)
+	{
+		std::regex regex("(\\S+)/(\\S+)");
+		std::smatch match;
+
+		if (std::regex_match(arg, match, regex))
+		{
+			double upper = std::stod(match[1]);
+			double lower = std::stod(match[2]);
+
+			innerInfo->pMeasure = m_measureFactory.Create();
+			innerInfo->pMeasure->Init(innerInfo->pivotMillisec, upper, lower);
+
+			innerInfo->pBranchScore->GetLastBPM()->SetFinishMillisec(innerInfo->pivotMillisec);
+			innerInfo->pBranchScore->AddBPM(innerInfo->pBPM);
+		}
+
 		return 0;
 	}
 	void Score::OneMeasureLine(const std::vector<std::string>& list, ScoreInnerInfo* innerInfo)

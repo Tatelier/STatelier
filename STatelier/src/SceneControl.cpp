@@ -2,19 +2,24 @@
 
 #include <SongSelect.h>
 
+namespace
+{
+}
+
 namespace STatelier
 {
+
 	void SceneControl::Start()
 	{
 		auto scene = CreateScene<Scene::SongSelect>();
 		scene->PreStart();
 		Coroutine* coroutine = m_coroutineControl.Create();
 
+		coroutine->m_scene = scene;
 		coroutine->m_generator = scene->GetStartIterator();
+		coroutine->m_callback = std::bind(&SceneControl::Callback, this, std::placeholders::_1, std::placeholders::_2);
 
 		m_coroutineControl.StartCoroutine(coroutine);
-
-		m_pSceneList.push_back(scene);
 	}
 
 	void SceneControl::Update()
@@ -35,12 +40,15 @@ namespace STatelier
 	void SceneControl::Finish()
 	{
 	}
+	void SceneControl::Callback(int result, STatelier::Coroutine* coroutine)
+	{
+		m_pSceneList.push_back(coroutine->m_scene);
+	}
 
 	template <typename T> 
 	T* SceneControl::CreateScene()
 	{
 		auto a = new T();
-		m_pSceneList.push_back(a);
 
 		return a;
 	}

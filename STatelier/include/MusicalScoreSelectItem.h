@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include <ISelectItem.h>
+#include <SelectItemBase.h>
 
 namespace STatelier::Score
 {
@@ -14,7 +14,7 @@ namespace STatelier::SongSelect
 	class GenreSelectItem;
 
 	class MusicalScoreSelectItem
-		: public ISelectItem
+		: public SelectItemBase
 	{
 	public:
 		void SetBase(std::shared_ptr<STatelier::Score::MusicalScore> musicalScore);

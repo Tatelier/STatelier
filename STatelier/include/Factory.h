@@ -22,6 +22,7 @@ namespace STatelier
 			if (position != m_instanceList.end())
 			{
 				m_instanceList.erase(position);
+				delete pInstance;
 				return 0;
 			}
 			return -1;

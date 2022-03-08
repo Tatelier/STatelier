@@ -14,13 +14,15 @@ namespace STatelier::Score
 	class BranchScore
 	{
 	public:
-		void Init(ScoreInnerInfo* innerInfo);
+		void Init(ScoreInnerInfo* pInnerInfo);
 		void Build();
 		void AddNote(Note* pNote);
 		void AddMeasure(Measure* pMeasure);
 		void AddBPM(BPM* pBPM);
 		BPM* GetFirstBPM();
 		BPM* GetLastBPM();
+		Measure* GetFirstMeasure();
+		Measure* GetLastMeasure();
 	private:
 		BranchType m_branchType;
 		Millisec m_startMillisec;

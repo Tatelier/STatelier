@@ -21,6 +21,7 @@ namespace STatelier
 		void Update();
 		void Draw();
 		void Finish();
+		void Callback(int result, Coroutine* coroutine);
 		template <typename T> T* CreateScene();
 	private:
 		std::vector<IScene*> m_pSceneList;

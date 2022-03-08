@@ -48,7 +48,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -85,6 +85,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -152,6 +155,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\dxlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,7 +167,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\ISelectItem.cpp" />
+    <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="include\Coroutine.cpp" />
+    <ClCompile Include="include\SelectItemBase.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\InputControl.cpp" />
     <ClCompile Include="src\BranchScore.cpp" />
     <ClCompile Include="src\Measure.cpp" />
     <ClCompile Include="src\Millisec.cpp" />
@@ -193,12 +202,16 @@
     <ClInclude Include="include\CourseType.h" />
     <ClInclude Include="include\Factory.h" />
     <ClInclude Include="include\GenreSelectItem.h" />
+    <ClInclude Include="include\IInput.h" />
+    <ClInclude Include="include\IInputControl.h" />
+    <ClInclude Include="include\InputFactory.h" />
     <ClInclude Include="include\Measure.h" />
     <ClInclude Include="include\MusicalScore.h" />
     <ClInclude Include="include\MusicalScoreSelectItem.h" />
     <ClInclude Include="include\Note.h" />
     <ClInclude Include="include\NoteFactory.h" />
     <ClInclude Include="include\NoteType.h" />
+    <ClInclude Include="include\SceneCommon.h" />
     <ClInclude Include="include\Score.h" />
     <ClInclude Include="include\ScoreInnerInfo.h" />
     <ClInclude Include="include\SelectItemControl.h" />
@@ -209,8 +222,10 @@
     <ClInclude Include="include\MainConfig.h" />
     <ClInclude Include="include\IScene.h" />
     <ClInclude Include="include\MusicalScoreFactory.h" />
-    <ClInclude Include="include\ISelectItem.h" />
+    <ClInclude Include="include\SelectItemBase.h" />
     <ClInclude Include="include\Millisec.h" />
+    <ClInclude Include="include\Input.h" />
+    <ClInclude Include="include\InputControl.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\statelier-score\statelier-score.vcxproj">

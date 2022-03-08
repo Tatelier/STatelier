@@ -2,6 +2,7 @@
 
 namespace STatelier {
 	class SceneControl;
+	class InputControl;
 
 	class Supervision {
 	public:
@@ -17,10 +18,14 @@ namespace STatelier {
 		void Run();
 
 		SceneControl* GetSceneControl();
+
+		InputControl* GetInputControl();
 	private:
 		static Supervision* s_pInstance;
 
 		SceneControl* m_pSceneControl;
+
+		InputControl* m_pInputControl;
 
 		void Start();
 		void Finish();

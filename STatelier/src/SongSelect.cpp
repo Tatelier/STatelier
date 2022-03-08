@@ -1,5 +1,7 @@
 #include <SongSelect.h>
 
+#include <SceneCommon.h>
+
 #include <SelectItemControl.h>
 
 #include <DxLib.h>
@@ -22,8 +24,10 @@ namespace STatelier::Scene
 		auto selectItemControl = new SelectItemControl();
 
 		auto futuref = std::async(std::launch::async, [selectItemControl] {
-			selectItemControl->Load("R:\\C#\\Tatelier\\Tatelier\\bin\\x64\\Debug\\Resources\\Score\\Root");
+			selectItemControl->Load("Resources\\Score\\Root");
 		});
+
+		this->selectItemControl = selectItemControl;
 
 		while (true)
 		{
@@ -40,17 +44,26 @@ namespace STatelier::Scene
 			}
 		}
 
+		input = Supervision::GetInstance()->GetInputControl()->CreateInput();
+
 		co_return;
 	}
-
+	int a = 0;
 	void SongSelect::Update()
 	{
+		a = input->GetCount(KEY_INPUT_D);
 	}
 	void SongSelect::Draw()
 	{
-		if (selectItemControlStatus)
+		auto current = selectItemControl->GetCurrent();
+		if (current == nullptr)
 		{
-			DrawString(0, 0, "DONE!!", 0xFFFFFF);
+			DrawString(0, 0, "ïàñ Ç™ë∂ç›ÇµÇ‹ÇπÇÒÅB", 0xFFFFFF, 0);
+		}
+		else
+		{
+			auto ms = std::dynamic_pointer_cast<MusicalScoreSelectItem>(current);
+			DrawString(0, 0, (ms->GetBase()->GetTitle() + std::to_string(a)).c_str(), 0xFFFFFF, 0);
 		}
 	}
 }

@@ -5,6 +5,7 @@
 #include <vector>
 #include <filesystem>
 #include "MusicalScoreSelectItem.h"
+#include <GenreSelectItem.h>
 #include "SelectItemFactory.h"
 #include "SelectItemControl.h"
 #include "MusicalScoreFactory.h"
@@ -16,9 +17,53 @@ namespace STatelier::SongSelect
 	class SelectItemControl
 	{
 	public:
-		std::shared_ptr<ISelectItem> GetCurrent()
+		std::shared_ptr<SelectItemBase> GetCurrent()
 		{
 			return m_current;
+		}
+		int Open()
+		{
+			if (m_current != nullptr)
+			{
+				auto genre = std::dynamic_pointer_cast<GenreSelectItem>(m_current);
+				if (genre != nullptr)
+				{
+					auto current = genre->GetCurrent();
+					if (current != nullptr)
+					{
+						m_current = current;
+						return 0;
+					}
+					else
+					{
+						return -2;
+					}
+				}
+				else
+				{
+					return -3;
+				}
+			}
+
+			return -1;
+		}
+		int MovePrev()
+		{
+			if (m_current != nullptr)
+			{
+				m_current = m_current->GetPrev();
+				return 0;
+			}
+			return -1;
+		}
+		int MoveNext()
+		{
+			if (m_current != nullptr)
+			{
+				m_current = m_current->GetNext();
+				return 0;
+			}
+			return -1;
 		}
 		int Load(const std::string& folderPath)
 		{
@@ -76,7 +121,7 @@ namespace STatelier::SongSelect
 		SelectItemControl()
 		{
 			m_musicalScoreList = std::make_shared<std::vector<std::shared_ptr<MusicalScore>>>();
-			m_selectItemList = std::make_shared<std::vector<std::shared_ptr<ISelectItem>>>();
+			m_selectItemList = std::make_shared<std::vector<std::shared_ptr<SelectItemBase>>>();
 		}
 		~SelectItemControl()
 		{
@@ -85,9 +130,9 @@ namespace STatelier::SongSelect
 		}
 	private:
 		std::shared_ptr<std::vector<std::shared_ptr<MusicalScore>>> m_musicalScoreList;
-		std::shared_ptr<std::vector<std::shared_ptr<ISelectItem>>> m_selectItemList;
+		std::shared_ptr<std::vector<std::shared_ptr<SelectItemBase>>> m_selectItemList;
 
-		std::shared_ptr<ISelectItem> m_current;
+		std::shared_ptr<SelectItemBase> m_current;
 	};
 
 }

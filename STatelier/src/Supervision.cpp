@@ -4,31 +4,12 @@
 #include <Supervision.h>
 #include "SceneControl.h"
 
+#include <InputControl.h>
+
 #include "NoteType.h"
 
-namespace STatelier {
-
-
-	//class AAA
-	//{
-	//public:
-	//	std::experimental::generator<int> GetStartEnumerator()
-	//	{
-	//		a = 3;
-	//		co_yield 3;
-	//		a = 1;
-	//		co_yield 1;
-	//		a = -1;
-	//		co_yield -1;
-	//	}
-	//	AAA()
-	//	{
-
-	//	}
-	//private:
-	//	int a = 2;
-	//};
-
+namespace STatelier 
+{
 	Supervision* Supervision::s_pInstance = nullptr;
 
 	void Supervision::Run()
@@ -47,36 +28,15 @@ namespace STatelier {
 
 		DxLib_Init();
 		SetUseGraphBaseDataBackup(FALSE);
+		SetDrawScreen(DX_SCREEN_BACK);
 
-		SceneControl* sceneControl = new SceneControl();
-		sceneControl->Start();
-		//auto aaa = new AAA();
+		
+		this->m_pSceneControl = new SceneControl();
+		this->m_pInputControl = new InputControl();
 
-		//auto ex = aaa->GetStartEnumerator();
 
-		//for (auto const& state : aaa->GetStartEnumerator()) {
 
-		//}
-		//while (true)
-		//{
-		//	auto aa = ex.begin();
-		//	if (aa == ex.end())
-		//	{
-		//		break;
-		//	}
-		//	auto a = aa._Coro.promise()._Value;
-		//	if (*a <= 0)
-		//	{
-		//		break;
-		//	}
-		//	printf("" + *a);
-		//}
-		//delete aaa;
-		//ex.begin();
-		//ex.begin();
-		//ex.begin();
-		//ex.begin();
-		//ex.begin();
+		m_pSceneControl->Start();
 
 		while (!m_quit) 
 		{
@@ -86,15 +46,26 @@ namespace STatelier {
 			}
 			ClearDrawScreen();
 
-			sceneControl->Update();
-			sceneControl->Draw();
+			m_pInputControl->Update();
+			m_pSceneControl->Update();
+
+
+			m_pSceneControl->Draw();
 
 			ScreenFlip();
 		}
+
+#ifndef _DEBUG
 		DxLib_End();
+#endif
 	}
 	SceneControl* Supervision::GetSceneControl()
 	{
 		return m_pSceneControl;
+	}
+
+	InputControl* Supervision::GetInputControl()
+	{
+		return m_pInputControl;
 	}
 }

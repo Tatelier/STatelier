@@ -1,6 +1,11 @@
 #pragma once
 #include <IScene.h>
 
+namespace STatelier
+{
+	class IInput;
+}
+
 namespace STatelier::SongSelect
 {
 	class SelectItemControl;
@@ -18,5 +23,6 @@ namespace STatelier::Scene
 	private:
 		bool selectItemControlStatus = false;
 		SelectItemControl* selectItemControl;
+		IInput* input;
 	};
 }
