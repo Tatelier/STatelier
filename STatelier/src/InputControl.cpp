@@ -9,14 +9,6 @@ namespace
 
 namespace STatelier
 {
-	IInput* InputControl::CreateInput()
-	{
-		IInput* input = new Input(this);
-		m_pInputList.push_back(input);
-
-		return input;
-	}
-
 	void InputControl::Update()
 	{
 		if (GetHitKeyStateAll(buffer.data()) == 0)

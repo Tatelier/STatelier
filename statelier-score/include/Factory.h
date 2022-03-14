@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <Factory.h>
 
 namespace STatelier
 {
@@ -32,20 +31,12 @@ namespace STatelier
 		{
 			return m_instanceList;
 		}
-		void Init()
+		~Factory()
 		{
 			for (size_t i = 0; i < m_instanceList.size(); i++)
 			{
 				delete m_instanceList[i];
 			}
-		}
-		Factory()
-		{
-
-		}
-		~Factory()
-		{
-			Init();
 		}
 	private:
 		std::vector<T*> m_instanceList;

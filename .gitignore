@@ -1,9 +1,1 @@
-Tatelier.Nucleus/obj/
-STatelier/obj/
-STatelier/bin/
-.vs/
-packages/
-Tatelier.Nucleus/bin/
-statelier-score_/obj/
-statelier-score_/x64/
-x64/
+build/

@@ -9,8 +9,10 @@ namespace STatelier
 	class Input : public IInput
 	{
 	public:
-		int GetCount(int keyCode);
-		void Update();
+		virtual int GetCount(int keyCode) const override;
+		virtual void Update();
+		virtual bool IsEnabled() const override;
+		virtual void SetEnabled(bool enabled) override;
 		Input(InputControl* pInputControl);
 	private:
 		InputControl* m_pInputControl;

@@ -3,7 +3,21 @@
 namespace STatelier {
 	class SceneControl;
 	class InputControl;
+	class MessageBoxControl;
 
+
+	class System
+	{
+	public:
+		int GetDrawWidth()
+		{
+			return 640;
+		}
+		int GetDrawHeight()
+		{
+			return 480;
+		}
+	};
 	class Supervision {
 	public:
 		static void Initialize() {
@@ -20,12 +34,15 @@ namespace STatelier {
 		SceneControl* GetSceneControl();
 
 		InputControl* GetInputControl();
+
+		System* GetSystem();
 	private:
 		static Supervision* s_pInstance;
 
 		SceneControl* m_pSceneControl;
-
 		InputControl* m_pInputControl;
+		MessageBoxControl* pMessageBoxControl;
+		System* pSystem;
 
 		void Start();
 		void Finish();

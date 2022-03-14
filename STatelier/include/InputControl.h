@@ -10,30 +10,39 @@ namespace STatelier
 	class IInputControl
 	{
 	public:
-
+		
 	};
 
 	class InputControl : public IInputControl
 	{
 	public:
-		template <class T>
-		IInput* Create()
-		{
-			IInput* input = new T();
-			m_pInputList.push_back(input);
-		}
-		IInput* CreateInput();
 		const std::array<char, 256>& GetStateBuffer()
 		{
 			return buffer;
 		}
 		void Update();
+
+		void Regist(IInput* input)
+		{
+			m_pInputList.push_back(input);
+		}
+
+		template<typename Iterator>
+		void Unregist(Iterator begin, Iterator end)
+		{
+			while (begin != end)
+			{
+				auto position = std::find(m_pInputList.begin(), m_pInputList.end(), *begin);
+				if (position != m_pInputList.end())
+				{
+					m_pInputList.erase(position);
+				}
+				begin++;
+			}
+		}
 		~InputControl()
 		{
-			for (size_t i = 0; i < m_pInputList.size(); i++)
-			{
-				delete m_pInputList[i];
-			}
+			m_pInputList.clear();
 		}
 	private:
 		std::vector<IInput*> m_pInputList;

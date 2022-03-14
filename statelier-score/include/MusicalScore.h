@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include <export.h>
+
 #include "Course.h"
 
 namespace STatelier::Score
@@ -11,7 +13,7 @@ namespace STatelier::Score
 
 	using ScoreList = std::vector<std::shared_ptr<Score>>;
 
-	class MusicalScore
+	class DLL_EXPORT MusicalScore
 	{
 	public:
 		MusicalScore();

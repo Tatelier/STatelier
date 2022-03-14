@@ -8,6 +8,8 @@
 #include <SelectItemControl.h>
 #include <Supervision.h>
 
+#include <MusicalScore.h>
+
 using namespace STatelier::SongSelect;
 
 // ƒvƒƒOƒ‰ƒ€‚Í WinMain ‚©‚çŽn‚Ü‚è‚Ü‚·
@@ -16,6 +18,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	STatelier::Supervision::Initialize();
 	STatelier::Supervision::GetInstance()->Run();
 	STatelier::Supervision::Finalize();
+
 
 	//auto selectItemControl = new SelectItemControl();
 	//selectItemControl->Load("Resources/Score/Root");

@@ -7,7 +7,7 @@
 
 namespace STatelier
 {
-	int Input::GetCount(int keyCode)
+	int Input::GetCount(int keyCode) const
 	{
 		return bytes[keyCode];
 	}
@@ -36,6 +36,14 @@ namespace STatelier
 				bytes[i] = bytes[i] > 0 ? -1 : 0;
 			}
 		}
+	}
+	bool Input::IsEnabled() const
+	{
+		return m_enabled;
+	}
+	void Input::SetEnabled(bool enabled)
+	{
+		m_enabled = enabled;
 	}
 	Input::Input(InputControl* pInputControl)
 	{

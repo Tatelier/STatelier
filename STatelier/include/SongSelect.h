@@ -1,5 +1,8 @@
 #pragma once
 #include <IScene.h>
+#include <player.h>
+#include <Factory.h>
+#include <InputFactory.h>
 
 namespace STatelier
 {
@@ -9,6 +12,7 @@ namespace STatelier
 namespace STatelier::SongSelect
 {
 	class SelectItemControl;
+	//class Player;
 }
 
 namespace STatelier::Scene
@@ -20,9 +24,20 @@ namespace STatelier::Scene
 		virtual std::experimental::generator<void*> GetStartIterator() override;
 		virtual void Update() override;
 		virtual void Draw() override;
+		SongSelect();
+		~SongSelect();
 	private:
-		bool selectItemControlStatus = false;
-		SelectItemControl* selectItemControl;
-		IInput* input;
+		void InitPlayers();
+
+		IInput* CreatePlayerInput();
+
+		SelectItemControl* selectItemControl = nullptr;
+
+		std::vector<Player*> playerList;
+
+		InputFactory inputFactory;
+
+		Factory<Player> playerFactory;
+		Factory<PlayerInput> playerInputFactory;
 	};
 }

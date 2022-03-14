@@ -1,5 +1,6 @@
 #pragma once
 
+#include <export.h>
 #include "Millisec.h"
 
 namespace STatelier::Score

@@ -1,6 +1,4 @@
-#pragma once
-
-#ifdef DLL_BODY
+#ifdef EXPORTS
 #define DLL_EXPORT __declspec(dllexport)
 #else
 #define DLL_EXPORT __declspec(dllimport)

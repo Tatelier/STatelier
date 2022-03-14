@@ -24,8 +24,8 @@ namespace STatelier
 			m_enabled = enabled;
 		}
 		std::experimental::generator<void*> m_generator;
-		std::function<void(int, Coroutine*)> m_callback;
 		IScene* m_scene;
+		std::function<void(int, Coroutine*)> m_callback;
 	private:
 		bool m_enabled = true;
 	};
