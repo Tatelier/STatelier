@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include <DxLib_u8.h>
 #include <experimental/generator>
 
 #include <Supervision.h>
@@ -19,6 +20,8 @@ namespace STatelier
 	{
 		bool m_quit = false;
 
+		SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);
+
 		SetOutApplicationLogValidFlag(FALSE);
 
 		ChangeWindowMode(1);
@@ -29,10 +32,13 @@ namespace STatelier
 
 		SetDoubleStartValidFlag(TRUE);
 
+		ChangeFont(u8"UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì NK-B");
 		SetFontSize(48);
+		ChangeFontType(DX_FONTTYPE_ANTIALIASING_4X4);
 		
 		SetGraphMode(1920, 1080, 32);
-		SetWindowSize(480, 270);
+		SetWindowSize(240, 135);
+		SetWindowSize(960, 540);
 
 		DxLib_Init();
 		SetUseGraphBaseDataBackup(FALSE);
@@ -51,9 +57,8 @@ namespace STatelier
 		m_pSceneControl->Start();
 		MessageBoxInfo info;
 		info.messageBoxType = MessageBoxType::Error;
-
-		info.content = "‚±‚±‚©‚ç‚Í‚¶‚Ü‚é";
-		pMessageBoxControl->Append(info);
+		info.content = u8"";
+		//pMessageBoxControl->Append(info);
 
 		while (!m_quit) 
 		{
@@ -74,7 +79,7 @@ namespace STatelier
 			ScreenFlip();
 		}
 
-#ifndef _DEBUG
+#ifndef STATELIER_DEBUG
 		DxLib_End();
 #endif
 	}

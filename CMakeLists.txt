@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS /MP)
+set(CMAKE_CXX_FLAGS_DEBUG /ZI)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
@@ -24,6 +25,9 @@ target_link_directories(STatelier PRIVATE $ENV{HOMEDRIVE}$ENV{HOME}/DxLib/)
 target_include_directories(STatelier PRIVATE ${CMAKE_SOURCE_DIR}/STatelier/include)
 target_include_directories(STatelier PUBLIC $ENV{HOMEDRIVE}$ENV{HOME}/DxLib/)
 target_include_directories(STatelier PRIVATE ${CMAKE_SOURCE_DIR}/statelier-score/include)
+
+
+target_compile_definitions(STatelier PRIVATE $<$<CONFIG:Debug>:STATELIER_DEBUG>)
 
 # statelier-score
 

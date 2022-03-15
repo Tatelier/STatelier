@@ -10,16 +10,16 @@ namespace STatelier
 {
     struct MessageBoxInfoExe
     {
-        std::string content = "OK";
+        std::u8string content = u8"OK";
         std::function<void()> func;
     };
     struct MessageBoxInfo
     {
         MessageBoxType messageBoxType = MessageBoxType::Info;
 
-        std::string header;
-        std::string content;
+        std::u8string header;
+        std::u8string content;
 
-        std::array<MessageBoxInfoExe, 5> messageBoxInfoExe;
+        std::array<MessageBoxInfoExe, 4> messageBoxInfoExe;
     };
 }

@@ -1,0 +1,2 @@
+ #define BEGIN_MSG_MAP_EX(theClass) @<
+ #define END_MSG_MAP() @>

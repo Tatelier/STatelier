@@ -6,6 +6,7 @@
 
 #include <MessageBoxInfo.h>
 #include <DxLib.h>
+#include <DxLib_u8.h>
 
 namespace STatelier
 {
@@ -36,7 +37,11 @@ namespace STatelier
 		}
 		IMessageBoxControlComponent()
 		{
-			fontHandle = CreateFontToHandle("UD デジタル 教科書体 NK-B", 40, 0, DX_FONTTYPE_ANTIALIASING_4X4);
+			fontHandle = CreateFontToHandle(u8"UD デジタル 教科書体 NK-B", 40, 0, DX_FONTTYPE_ANTIALIASING_4X4);
+		}
+		~IMessageBoxControlComponent()
+		{
+			DeleteFontToHandle(fontHandle);
 		}
 	private:
 		int fontHandle = -1;
@@ -48,15 +53,22 @@ namespace STatelier
 		void Init(IMessageBoxControlComponent* component)
 		{
 			this->component = component;
+			Reset();
+			this->fontHeaderHandle = CreateFontToHandle(GetFontName(), 40, 0, DX_FONTTYPE_ANTIALIASING_4X4);
+			this->fontContentHandle = CreateFontToHandle(GetFontName(), 28, 0, DX_FONTTYPE_ANTIALIASING_4X4);
 		}
+		void Reset();
 		void Update();
-		void DrawButtonOther(const std::string& text, int x, int y, uint32_t clr);
-		void DrawButtonNowSelect(const std::string& text, int x, int y, uint32_t clr);
+		void DrawHeader(std::shared_ptr<MessageBoxItem> item);
+		void DrawButtonOther(float xf, float yf, const std::u8string& text, uint32_t textColor);
+		void DrawButtonNowSelect(float xf, float yf, const std::u8string& text, uint32_t textColor, uint32_t backColor);
 		void DrawAllButton(std::shared_ptr<MessageBoxItem> item, float right, float bottom);
 		void Draw();
 		std::shared_ptr<MessageBoxItem> Append(const MessageBoxInfo& info);
 	private:
-		bool enabled = true;
+		bool enabled = false;
+		int fontHeaderHandle = -1;
+		int fontContentHandle = -1;
 		IMessageBoxControlComponent* component;
 		std::vector<std::shared_ptr<MessageBoxItem>> itemList;
 	};

@@ -20,17 +20,17 @@ namespace STatelier
 			{
 				case MessageBoxType::Info:
 					{
-						header = "Info";
+						header = u8"Info";
 					}
 					break;
 				case MessageBoxType::Warning:
 					{
-						header = "Warning";
+						header = u8"Warning";
 					}
 					break;
 				case MessageBoxType::Error:
 					{
-						header = "Error";
+						header = u8"Error";
 					}
 					break;
 			}
@@ -40,36 +40,13 @@ namespace STatelier
 			return info;
 		}
 
-		const std::string& GetHeader()
+		const std::u8string& GetHeader()
 		{
 			return header;
 		}
 
-		const unsigned int GetTypeColor()
-		{
-			switch (info.messageBoxType)
-			{
-				case MessageBoxType::Info:
-					{
-						return 0x3089CC;
-					}
-					break;
-				case MessageBoxType::Warning:
-					{
-						return 0xBBBB00;
-					}
-					break;
-				case MessageBoxType::Error:
-					{
-						return 0xFF8888;
-					}
-					break;
-				default:
-					return 0xFFFFFF;
-			}
-		}
 	private:
 		MessageBoxInfo info;
-		std::string header;
+		std::u8string header;
 	};
 }
