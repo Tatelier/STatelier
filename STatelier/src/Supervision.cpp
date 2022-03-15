@@ -38,7 +38,6 @@ namespace STatelier
 		
 		SetGraphMode(1920, 1080, 32);
 		SetWindowSize(240, 135);
-		SetWindowSize(960, 540);
 
 		DxLib_Init();
 		SetUseGraphBaseDataBackup(FALSE);
@@ -58,7 +57,7 @@ namespace STatelier
 		MessageBoxInfo info;
 		info.messageBoxType = MessageBoxType::Error;
 		info.content = u8"";
-		//pMessageBoxControl->Append(info);
+		pMessageBoxControl->Append(info);
 
 		while (!m_quit) 
 		{
