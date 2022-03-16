@@ -2,6 +2,7 @@
 #include <IScene.h>
 #include <player.h>
 #include <Factory.h>
+#include <SongSelect/PlayerInput.h>
 #include <InputFactory.h>
 
 namespace STatelier
@@ -28,7 +29,7 @@ namespace STatelier::Scene
 		~SongSelect();
 	private:
 		void InitPlayers();
-
+		void UpdatePlayer(Player* player);
 		IInput* CreatePlayerInput();
 
 		SelectItemControl* selectItemControl = nullptr;

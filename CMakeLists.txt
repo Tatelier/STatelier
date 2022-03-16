@@ -1,4 +1,6 @@
-project(STatelier)
+project(STatelier 
+	DESCRIPTION "Super Tatelier"
+	LANGUAGES CXX)
 
 cmake_minimum_required(VERSION 3.23)
 
@@ -13,12 +15,33 @@ set(CMAKE_CXX_FLAGS_DEBUG /ZI)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
+# SimilarDotNet
+
+file(GLOB_RECURSE SOURCES 
+${CMAKE_SOURCE_DIR}/SimilarDotNet/src/**/*.*
+)
+
+file(GLOB_RECURSE HEADERS  
+${CMAKE_SOURCE_DIR}/SimilarDotNet/include/**/*.*
+)
+
+# add_library(SimilarDotNet SHARED ${SOURCES} ${HEADERS})
+add_executable(SimilarDotNet ${SOURCES} ${HEADERS})
+target_include_directories(SimilarDotNet PRIVATE ${CMAKE_SOURCE_DIR}/SimilarDotNet/include)
+
 # STatelier
 
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/STatelier/src/*.cpp)
-file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/STatelier/include/*.h)
+file(GLOB_RECURSE SOURCES 
+	${CMAKE_SOURCE_DIR}/STatelier/src/*.cpp
+)
+
+file(GLOB_RECURSE HEADERS 
+	${CMAKE_SOURCE_DIR}/STatelier/include/*.*
+)
 
 add_executable(STatelier WIN32 ${SOURCES} ${HEADERS})
+
+set_property(TARGET STatelier PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "$(TargetDir)")
 
 target_link_directories(STatelier PRIVATE $ENV{HOMEDRIVE}$ENV{HOME}/DxLib/)
 
@@ -31,8 +54,13 @@ target_compile_definitions(STatelier PRIVATE $<$<CONFIG:Debug>:STATELIER_DEBUG>)
 
 # statelier-score
 
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/statelier-score/src/*.cpp)
-file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/statelier-score/include/*.h)
+file(GLOB_RECURSE SOURCES 
+	${CMAKE_SOURCE_DIR}/statelier-score/src/*.cpp
+)
+
+file(GLOB_RECURSE HEADERS 
+	${CMAKE_SOURCE_DIR}/statelier-score/include/*.*
+)
 
 add_library(statelier-score SHARED ${SOURCES} ${HEADERS})
 target_include_directories(statelier-score PRIVATE ${CMAKE_SOURCE_DIR}/statelier-score/include)
@@ -42,4 +70,4 @@ target_include_directories(statelier-score PRIVATE ${CMAKE_SOURCE_DIR}/statelier
 target_link_libraries(STatelier statelier-score)
 
 target_compile_definitions(statelier-score PRIVATE EXPORTS)
-add_dependencies(STatelier statelier-score)
+add_dependencies(STatelier statelier-score SimilarDotNet)

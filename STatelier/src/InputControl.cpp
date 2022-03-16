@@ -16,9 +16,21 @@ namespace STatelier
 
 		}
 
-		for (size_t i = 0; i < m_pInputList.size(); i++)
+		if (false)
 		{
-			m_pInputList[i]->Update();
+			// メッセージボックスが表示されている場合は、
+			// 標準のInputを更新しない
+			for (size_t i = 0; i < m_pInputList.size(); i++)
+			{
+				m_pInputList[i]->Reset();
+			}
+		}
+		else
+		{
+			for (size_t i = 0; i < m_pInputList.size(); i++)
+			{
+				m_pInputList[i]->Update();
+			}
 		}
 	}
 }

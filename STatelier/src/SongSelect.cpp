@@ -56,15 +56,26 @@ namespace STatelier::Scene
 		co_return;
 	}
 
+	void SongSelect::UpdatePlayer(Player* player)
+	{
+		if (player->GetInput()->GetKeyDown(KEY_INPUT_D))
+		{
+			selectItemControl->MovePrev();
+		}
+
+		if (player->GetInput()->GetKeyDown(KEY_INPUT_K))
+		{
+			selectItemControl->MoveNext();
+		}
+	}
+
 	void SongSelect::Update()
 	{
 		for (size_t i = 0; i < playerList.size(); i++)
 		{
 			Player* player = playerList[i];
-			if (player->GetInput()->GetCount(KEY_INPUT_D) > 0)
-			{
-				DrawString(0, 0, "ïàñ Ç™ë∂ç›ÇµÇ‹ÇπÇÒÅB", 0xFFFFFF, 0);
-			}
+
+			UpdatePlayer(player);
 		}
 	}
 	void SongSelect::Draw()
@@ -72,7 +83,7 @@ namespace STatelier::Scene
 		auto current = selectItemControl->GetCurrent();
 		if (current == nullptr)
 		{
-			//DrawString(0, 0, "ïàñ Ç™ë∂ç›ÇµÇ‹ÇπÇÒÅB", 0xFFFFFF, 0);
+
 		}
 		else
 		{

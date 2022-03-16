@@ -12,14 +12,34 @@ namespace STatelier
 		return bytes[keyCode];
 	}
 
+	bool Input::GetKey(int keyCode) const
+	{
+		return bytes[keyCode] > 0;
+	}
+
+	bool Input::GetKeyDown(int keyCode) const
+	{
+		return bytes[keyCode] == 1;
+	}
+
+	bool Input::GetKeyUp(int keyCode) const
+	{
+		return bytes[keyCode] == -1;
+	}
+
+	void Input::Reset()
+	{
+		for (size_t i = 0; i < 256; i++)
+		{
+			bytes[i] = 0;
+		}
+	}
+
 	void Input::Update()
 	{
 		if (!m_enabled)
 		{
-			for (size_t i = 0; i < 256; i++)
-			{
-				bytes[i] = 0;
-			}
+			Reset();
 			return;
 		}
 

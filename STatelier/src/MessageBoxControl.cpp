@@ -3,6 +3,7 @@
 #include <DxLib.h>
 #include <DxLib_u8.h>
 #include <Supervision.h>
+#include <u8.hpp>
 
 #include <MessageBoxItem.h>
 
@@ -51,64 +52,10 @@ namespace
 
 		return DrawStringFToHandle(xf, yf, text, color, fontHandle);
 	}
-	
-
-	int GetCharU8(const char8_t* text, int size, int startIndex, std::array<char8_t, 7>* resultChar)
-	{
-		if (startIndex >= size)
-		{
-			return -1;
-		}
-
-		char8_t initial = text[startIndex];
-
-		int resultSize = 1;
-
-		if ((initial & 0xF0) == 0xF0)
-		{
-			resultSize = 4;
-		}
-		else if ((initial & 0xE0) == 0xE0)
-		{
-			resultSize = 3;
-		}
-		else if ((initial & 0xC0) == 0xC0)
-		{
-			resultSize = 2;
-		}
-		else if ((initial & 0x80) == 0x80)
-		{
-			return -2;
-		}
-		else
-		{
-			resultSize = 1;
-		}
-
-		int k = 0;
-		for (int i = startIndex; i < startIndex + resultSize; i++)
-		{
-			resultChar->data()[k] = text[i];
-			k++;
-		}
-		resultChar->data()[k] = '\0';
-
-		return resultSize;
-	}
-
-	/**
-	 * @brief UTF8Œ^‚Ì•¶Žš‚ð1•¶ŽšŽæ“¾‚·‚é
-	 * @param text Žæ“¾Œ³•¶Žš—ñ
-	 * @param startIndex Žæ“¾ŠJŽnˆÊ’u
-	 * @param resultChar Žæ“¾‚µ‚½1•¶Žš
-	 * @return Žæ“¾‚µ‚½1•¶Žš‚ÌƒTƒCƒY
-	*/
-	int GetCharU8(const std::u8string& text, int startIndex, std::array<char8_t, 7>* resultChar)
-	{
-		return GetCharU8(text.c_str(), text.size(), startIndex, resultChar);
-	}
 	int DrawObtainsString2F(float x, float y, float AddY, const RECT& DrawArea, const char8_t* text, uint32_t StrClr, int32_t fontHandle)
 	{
+		using namespace STatelier::UTF8;
+
 		int StrLen;
 		int i;
 		float DrawX;
@@ -119,38 +66,37 @@ namespace
 		DrawX = x;
 		DrawY = y;
 
-		std::array<char8_t, 7> t;
+		std::array<char8_t, 7> c;
 
 		int size = strlen((const TCHAR*)text) + 1;
 
 		for (int i = 0; i < size;)
 		{
-			int charSize = GetCharU8(text, size, i, &t);
+			int charSize = GetCharU8(text, size, i, &c);
 			if (charSize > 0)
 			{
 				// ‚P•¶Žš‚Ì•`‰æ•‚ðŽæ“¾
-				DrawWidth = GetDrawStringWidthToHandle(t.data(), charSize, fontHandle);
+				DrawWidth = GetDrawStringWidthToHandle(c.data(), charSize, fontHandle);
+
 				if (charSize == 1
-					&& t.data()[0] == '\n')
+					&& c.data()[0] == '\n')
 				{
 					DrawX = x;
 					DrawY += AddY;
 				}
-				else 
-				if (DrawX + DrawWidth > DrawArea.right)
+				else if (DrawX + DrawWidth > DrawArea.right)
 				{
 					DrawX = x;
 					DrawY += AddY;
 				}
 
 				// ‚P•¶Žš•`‰æ
-				DrawStringFToHandle(DrawX, DrawY, (const TCHAR*)t.data(), StrClr, fontHandle);
+				DrawStringFToHandle(DrawX, DrawY, (const TCHAR*)c.data(), StrClr, fontHandle);
 
 				// •`‰æÀ•W‚ð‚¸‚ç‚·
 				DrawX += DrawWidth;
 
 				i += charSize;
-
 			}
 			else
 			{
@@ -215,10 +161,6 @@ namespace STatelier
 			DeleteFontToHandle(fontContentHandle);
 			this->fontContentHandle = -1;
 		}
-		std::u8string str = u8"a‚ ƒJ";
-
-
-
 	}
 	void MessageBoxControl::Update()
 	{
