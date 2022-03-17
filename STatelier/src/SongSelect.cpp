@@ -51,8 +51,6 @@ namespace STatelier::Scene
 			this->selectItemControl = selectItemControl;
 		}
 
-
-
 		co_return;
 	}
 
@@ -78,15 +76,63 @@ namespace STatelier::Scene
 			UpdatePlayer(player);
 		}
 	}
+	template<typename T, typename U>
+	bool TryCastSharePtr(T t, U u)
+	{
+		*u = std::dynamic_pointer_cast<U>(t);
+
+		if (*u == nullptr)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	SelectDrawItem drawItem;
+
 	void SongSelect::Draw()
 	{
 		auto current = selectItemControl->GetCurrent();
 		if (current == nullptr)
 		{
-
+			
 		}
 		else
 		{
+			auto* system = Supervision::GetInstance()->GetSystem();
+
+
+
+			bool done = false;
+
+			// •ˆ–Ê•`‰æ
+			if (!done)
+			{
+				std::shared_ptr<MusicalScoreSelectItem> mssi;
+				mssi = std::dynamic_pointer_cast<MusicalScoreSelectItem>(current);
+
+				if (mssi != nullptr)
+				{
+					mssi->Draw(&drawItem);
+					done = true;
+				}
+			}
+
+			// ƒWƒƒƒ“ƒ‹•`‰æ
+			if (!done)
+			{
+				std::shared_ptr<GenreSelectItem> gsi = std::dynamic_pointer_cast<GenreSelectItem>(current);
+
+				if (gsi != nullptr)
+				{
+					done = true;
+				}
+			}
+
+			
 		}
 	}
 

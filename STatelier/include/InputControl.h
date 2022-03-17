@@ -21,6 +21,11 @@ namespace STatelier
 			return buffer;
 		}
 		void Update();
+		
+		void RegistForMessageBoxInput(IInput* pInput)
+		{
+			pMessageBoxInput = pInput;
+		}
 
 		void Regist(IInput* input)
 		{
@@ -45,6 +50,7 @@ namespace STatelier
 			m_pInputList.clear();
 		}
 	private:
+		IInput* pMessageBoxInput = nullptr;
 		std::vector<IInput*> m_pInputList;
 		std::array<char, 256> buffer = { 0 };
 	};

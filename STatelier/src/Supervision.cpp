@@ -67,8 +67,8 @@ namespace STatelier
 			}
 			ClearDrawScreen();
 
-			pMessageBoxControl->Update();
 			m_pInputControl->Update();
+			pMessageBoxControl->Update();
 			m_pSceneControl->Update();
 
 			m_pSceneControl->Draw();

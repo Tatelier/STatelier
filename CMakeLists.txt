@@ -41,7 +41,7 @@ file(GLOB_RECURSE HEADERS
 
 add_executable(STatelier WIN32 ${SOURCES} ${HEADERS})
 
-set_property(TARGET STatelier PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "$(TargetDir)")
+set_property(TARGET STatelier PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $(OutDir))
 
 target_link_directories(STatelier PRIVATE $ENV{HOMEDRIVE}$ENV{HOME}/DxLib/)
 

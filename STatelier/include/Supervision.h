@@ -11,11 +11,11 @@ namespace STatelier {
 	public:
 		int GetDrawWidth()
 		{
-			return 640;
+			return 1920;
 		}
 		int GetDrawHeight()
 		{
-			return 480;
+			return 1080;
 		}
 	};
 	class Supervision {

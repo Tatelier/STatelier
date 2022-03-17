@@ -1,6 +1,7 @@
 #include "MusicalScoreSelectItem.h"
 
 #include <MusicalScore.h>
+#include <DxLib_u8.h>
 
 using namespace STatelier::Score;
 
@@ -25,5 +26,9 @@ namespace STatelier::SongSelect
 	MusicalScoreSelectItem::~MusicalScoreSelectItem()
 	{
 
+	}
+	void MusicalScoreSelectItem::Draw(const SelectDrawItem* drawItem)
+	{
+		DrawRotaStringFToHandle(drawItem->cx, drawItem->cy, 1.0, 1.0, 0, 0, 0, 0xFFFFFF, GetDefaultFontHandle(), 0, 0, (const TCHAR*)GetBase()->GetTitle().c_str());
 	}
 }

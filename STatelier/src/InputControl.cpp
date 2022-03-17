@@ -16,8 +16,9 @@ namespace STatelier
 
 		}
 
-		if (false)
+		if (true)
 		{
+			pMessageBoxInput->Update();
 			// メッセージボックスが表示されている場合は、
 			// 標準のInputを更新しない
 			for (size_t i = 0; i < m_pInputList.size(); i++)
@@ -27,6 +28,7 @@ namespace STatelier
 		}
 		else
 		{
+			pMessageBoxInput->Reset();
 			for (size_t i = 0; i < m_pInputList.size(); i++)
 			{
 				m_pInputList[i]->Update();
