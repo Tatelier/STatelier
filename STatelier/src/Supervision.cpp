@@ -1,5 +1,5 @@
 #include "DxLib.h"
-#include <DxLib_u8.h>
+#include <DxLib_ex_u8.h>
 #include <experimental/generator>
 
 #include <Supervision.h>
@@ -7,6 +7,8 @@
 #include <SceneControl.h>
 #include <InputControl.h>
 #include <MessageBoxControl.h>
+
+#include <Graphics/Utility.h>
 
 #include "NoteType.h"
 
@@ -19,6 +21,8 @@ namespace STatelier
 	void Supervision::Run()
 	{
 		bool m_quit = false;
+
+		STatelier::Graphics::GraphicsInit();
 
 		SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);
 
@@ -67,13 +71,15 @@ namespace STatelier
 			}
 			ClearDrawScreen();
 
-			m_pInputControl->Update();
 			pMessageBoxControl->Update();
+			m_pInputControl->Update();
 			m_pSceneControl->Update();
 
 			m_pSceneControl->Draw();
 
 			pMessageBoxControl->Draw();
+
+			//DrawGraph(0, 0, handle, TRUE);
 
 			ScreenFlip();
 		}

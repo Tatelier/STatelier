@@ -6,8 +6,7 @@
 
 #include <MessageBoxInfo.h>
 #include <DxLib.h>
-#include <DxLib_u8.h>
-#include <InputFactory.h>
+#include <DxLib_ex_u8.h>
 
 namespace STatelier
 {
@@ -55,7 +54,13 @@ namespace STatelier
 	class MessageBoxControl
 	{
 	public:
-		void Init(IMessageBoxControlComponent* component);
+		void Init(IMessageBoxControlComponent* component)
+		{
+			this->component = component;
+			Reset();
+			this->fontHeaderHandle = CreateFontToHandle(GetFontName(), 40, 0, DX_FONTTYPE_ANTIALIASING_4X4);
+			this->fontContentHandle = CreateFontToHandle(GetFontName(), 28, 0, DX_FONTTYPE_ANTIALIASING_4X4);
+		}
 		void Reset();
 		void Update();
 		void DrawHeader(std::shared_ptr<MessageBoxItem> item);
@@ -70,6 +75,5 @@ namespace STatelier
 		int fontContentHandle = -1;
 		IMessageBoxControlComponent* component;
 		std::vector<std::shared_ptr<MessageBoxItem>> itemList;
-		IInput* input = nullptr;
 	};
 }

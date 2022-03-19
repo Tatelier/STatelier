@@ -1,7 +1,7 @@
 #include "MessageBoxControl.h"
 
 #include <DxLib.h>
-#include <DxLib_u8.h>
+#include <DxLib_ex_u8.h>
 #include <Supervision.h>
 #include <u8.hpp>
 
@@ -149,21 +149,6 @@ namespace
 
 namespace STatelier
 {
-	void MessageBoxControl::Init(IMessageBoxControlComponent* component)
-	{
-		this->component = component;
-		Reset();
-		this->fontHeaderHandle = CreateFontToHandle(GetFontName(), 40, 0, DX_FONTTYPE_ANTIALIASING_4X4);
-		this->fontContentHandle = CreateFontToHandle(GetFontName(), 28, 0, DX_FONTTYPE_ANTIALIASING_4X4);
-
-		if (this->input != nullptr)
-		{
-			delete input;
-		}
-		input = new Input(Supervision::GetInstance()->GetInputControl());
-		Supervision::GetInstance()->GetInputControl()->RegistForMessageBoxInput(input);
-
-	}
 	void MessageBoxControl::Reset()
 	{
 		if (this->fontHeaderHandle != -1)
@@ -184,15 +169,7 @@ namespace STatelier
 			return;
 		}
 
-		if (input->GetKeyDown(KEY_INPUT_D))
-		{
-			currentIndex++;
-		}
 
-		if (input->GetKeyDown(KEY_INPUT_K))
-		{
-			currentIndex--;
-		}
 	}
 	void MessageBoxControl::DrawButtonOther(float x, float y, const std::u8string& text, uint32_t textColor)
 	{

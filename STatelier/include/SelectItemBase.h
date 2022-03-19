@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <vector>
-#include <SongSelect/SelectDrawItem.h>
 
 namespace STatelier::SongSelect
 {
@@ -29,8 +28,6 @@ namespace STatelier::SongSelect
 		{
 			m_next = next;
 		}
-
-		virtual void Draw(const SelectDrawItem* drawItem) = 0;
 
 		virtual ~SelectItemBase()
 		{

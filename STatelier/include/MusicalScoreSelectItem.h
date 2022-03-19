@@ -23,12 +23,9 @@ namespace STatelier::SongSelect
 		const std::shared_ptr<GenreSelectItem> GetGenre();
 		void SetGenre(std::shared_ptr<GenreSelectItem> genre);
 
-		virtual void Draw(const SelectDrawItem* drawItem) override;
-
 		virtual ~MusicalScoreSelectItem() override;
 	private:
 		std::shared_ptr<STatelier::Score::MusicalScore> m_musicalScore = nullptr;
 		std::shared_ptr<GenreSelectItem> m_genre;
-
 	};
 }

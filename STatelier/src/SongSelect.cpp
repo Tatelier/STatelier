@@ -7,12 +7,14 @@
 #include <Player.h>
 
 #include <DxLib.h>
+#include <Graphics/Utility.h>
 
 using namespace STatelier;
 using namespace STatelier::SongSelect;
 
 namespace
 {
+	int handle = -1;
 }
 
 namespace STatelier::Scene
@@ -50,6 +52,13 @@ namespace STatelier::Scene
 
 			this->selectItemControl = selectItemControl;
 		}
+
+		for (int i = 0; i < 10000; i++)
+		{
+			handle = STatelier::Graphics::CreateTextImageHandle();
+			DeleteGraph(handle);
+		}
+
 
 		co_return;
 	}
@@ -90,9 +99,6 @@ namespace STatelier::Scene
 			return true;
 		}
 	}
-
-	SelectDrawItem drawItem;
-
 	void SongSelect::Draw()
 	{
 		auto current = selectItemControl->GetCurrent();
@@ -116,7 +122,6 @@ namespace STatelier::Scene
 
 				if (mssi != nullptr)
 				{
-					mssi->Draw(&drawItem);
 					done = true;
 				}
 			}
@@ -132,7 +137,7 @@ namespace STatelier::Scene
 				}
 			}
 
-			
+			DrawGraph(0, 0, handle, TRUE);
 		}
 	}
 

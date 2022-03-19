@@ -3,6 +3,7 @@ project(STatelier
 	LANGUAGES CXX)
 
 cmake_minimum_required(VERSION 3.23)
+find_library(GDIP gdiplus)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON) 
 
@@ -41,7 +42,7 @@ file(GLOB_RECURSE HEADERS
 
 add_executable(STatelier WIN32 ${SOURCES} ${HEADERS})
 
-set_property(TARGET STatelier PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $(OutDir))
+set_property(TARGET STatelier PROPERTY VS_DEBUGGER_WORKING_DIRECTORY $(TargetDir))
 
 target_link_directories(STatelier PRIVATE $ENV{HOMEDRIVE}$ENV{HOME}/DxLib/)
 
@@ -64,6 +65,19 @@ file(GLOB_RECURSE HEADERS
 
 add_library(statelier-score SHARED ${SOURCES} ${HEADERS})
 target_include_directories(statelier-score PRIVATE ${CMAKE_SOURCE_DIR}/statelier-score/include)
+
+# DxLibEx
+
+file(GLOB_RECURSE SOURCES 
+	${CMAKE_SOURCE_DIR}/DxLibEx/src/*.cpp
+)
+
+file(GLOB_RECURSE HEADERS 
+	${CMAKE_SOURCE_DIR}/DxLibEx/include/*.*
+)
+
+add_library(DxLibEx SHARED ${SOURCES} ${HEADERS})
+target_include_directories(DxLibEx PRIVATE ${CMAKE_SOURCE_DIR}/DxLibEx/include)
 
 # 紐付け
 
