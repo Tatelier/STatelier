@@ -1,0 +1,3 @@
+[submodule "hjson-cpp"]
+	path = hjson-cpp
+	url = git@github.com.own:pansystar/hjson-cpp.git
