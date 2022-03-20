@@ -1,4 +1,4 @@
-#include "MessageBoxControl.h"
+#include <MessageBoxControl.h>
 
 #include <DxLib.h>
 #include <DxLib_ex_u8.h>
@@ -6,6 +6,8 @@
 #include <u8.hpp>
 
 #include <MessageBoxItem.h>
+#include <Input.h>
+#include <InputControl.h>
 
 namespace
 {
@@ -161,6 +163,11 @@ namespace STatelier
 			DeleteFontToHandle(fontContentHandle);
 			this->fontContentHandle = -1;
 		}
+		if (this->pInput != nullptr)
+		{
+			Supervision::GetInstance()->GetInputControl()->UnregistMessageBoxInput();
+			delete pInput;
+		}
 	}
 	void MessageBoxControl::Update()
 	{
@@ -168,7 +175,24 @@ namespace STatelier
 		{
 			return;
 		}
+		auto& current = itemList[0];
+		if (pInput->GetKeyDown(KEY_INPUT_D))
+		{
+			currentIndex++;
+			if (currentIndex >= current->GetInfo().messageBoxInfoExe.size())
+			{
+				currentIndex = current->GetInfo().messageBoxInfoExe.size() - 1;
+			}
+		}
 
+		if (pInput->GetKeyDown(KEY_INPUT_K))
+		{
+			currentIndex--;
+			if (currentIndex < 0)
+			{
+				currentIndex = 0;
+			}
+		}
 
 	}
 	void MessageBoxControl::DrawButtonOther(float x, float y, const std::u8string& text, uint32_t textColor)
@@ -310,6 +334,11 @@ namespace STatelier
 		DrawAllButton(item, rect.right, rect.bottom);
 	}
 
+	bool MessageBoxControl::IsActive()
+	{
+		return enabled;
+	}
+
 	std::shared_ptr<MessageBoxItem> MessageBoxControl::Append(const MessageBoxInfo& info)
 	{
 		enabled = true;
@@ -320,5 +349,14 @@ namespace STatelier
 		itemList.push_back(item);
 
 		return item;
+	}
+	void MessageBoxControl::Init(IMessageBoxControlComponent* component)
+	{
+		this->component = component;
+		Reset();
+		this->fontHeaderHandle = CreateFontToHandle(GetFontName(), 40, 0, DX_FONTTYPE_ANTIALIASING_4X4);
+		this->fontContentHandle = CreateFontToHandle(GetFontName(), 28, 0, DX_FONTTYPE_ANTIALIASING_4X4);
+		this->pInput = new Input(Supervision::GetInstance()->GetInputControl());
+		Supervision::GetInstance()->GetInputControl()->RegistMessageBoxInput(this->pInput);
 	}
 }

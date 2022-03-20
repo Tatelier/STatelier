@@ -53,15 +53,18 @@ namespace STatelier
 		this->m_pSceneControl = new SceneControl();
 		this->m_pInputControl = new InputControl();
 		this->pMessageBoxControl = new MessageBoxControl();
-		this->pMessageBoxControl->Init(&imbcc);
-
 		this->pSystem = new System();
 
+		this->pMessageBoxControl->Init(&imbcc);
+
+
+		this->m_pInputControl->SetMessageBoxControl(this->pMessageBoxControl);
+
 		m_pSceneControl->Start();
-		MessageBoxInfo info;
-		info.messageBoxType = MessageBoxType::Error;
-		info.content = u8"";
-		pMessageBoxControl->Append(info);
+		//MessageBoxInfo info;
+		//info.messageBoxType = MessageBoxType::Error;
+		//info.content = u8"";
+		//pMessageBoxControl->Append(info);
 
 		while (!m_quit) 
 		{

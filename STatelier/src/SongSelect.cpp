@@ -52,13 +52,15 @@ namespace STatelier::Scene
 
 			this->selectItemControl = selectItemControl;
 		}
+		STatelier::Graphics::CreateTextImageHandleInfo info;
+		info.color = 0xFFFFFFFF;
+		info.edgeColor = 0xFF000000;
+		info.fontSize = 32;
+		info.u8Text = u8"Naked Glow";
+		info.width = 900;
+		info.height = 130;
 
-		for (int i = 0; i < 10000; i++)
-		{
-			handle = STatelier::Graphics::CreateTextImageHandle();
-			DeleteGraph(handle);
-		}
-
+		handle = STatelier::Graphics::CreateTextImageHandle(info);
 
 		co_return;
 	}

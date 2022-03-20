@@ -10,6 +10,7 @@
 
 namespace STatelier
 {
+	class IInput;
 	class MessageBoxItem;
 
 	class IMessageBoxControlComponent
@@ -35,10 +36,7 @@ namespace STatelier
 		{
 			return fontHandle;
 		}
-		bool IsActiveMessageBox()
-		{
-			return true;
-		}
+
 		IMessageBoxControlComponent()
 		{
 			fontHandle = CreateFontToHandle(u8"UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì NK-B", 40, 0, DX_FONTTYPE_ANTIALIASING_4X4);
@@ -54,13 +52,7 @@ namespace STatelier
 	class MessageBoxControl
 	{
 	public:
-		void Init(IMessageBoxControlComponent* component)
-		{
-			this->component = component;
-			Reset();
-			this->fontHeaderHandle = CreateFontToHandle(GetFontName(), 40, 0, DX_FONTTYPE_ANTIALIASING_4X4);
-			this->fontContentHandle = CreateFontToHandle(GetFontName(), 28, 0, DX_FONTTYPE_ANTIALIASING_4X4);
-		}
+		void Init(IMessageBoxControlComponent* component);
 		void Reset();
 		void Update();
 		void DrawHeader(std::shared_ptr<MessageBoxItem> item);
@@ -68,9 +60,11 @@ namespace STatelier
 		void DrawButtonNowSelect(float xf, float yf, const std::u8string& text, uint32_t textColor, uint32_t backColor);
 		void DrawAllButton(std::shared_ptr<MessageBoxItem> item, float right, float bottom);
 		void Draw();
+		bool IsActive();
 		std::shared_ptr<MessageBoxItem> Append(const MessageBoxInfo& info);
 	private:
 		bool enabled = false;
+		IInput* pInput;
 		int fontHeaderHandle = -1;
 		int fontContentHandle = -1;
 		IMessageBoxControlComponent* component;

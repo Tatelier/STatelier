@@ -7,6 +7,8 @@
 
 namespace STatelier
 {
+	class MessageBoxControl;
+
 	class IInputControl
 	{
 	public:
@@ -21,6 +23,21 @@ namespace STatelier
 			return buffer;
 		}
 		void Update();
+
+		void SetMessageBoxControl(MessageBoxControl* pMessageBoxControl)
+		{
+			this->pMessageBoxControl = pMessageBoxControl;
+		}
+
+		void RegistMessageBoxInput(IInput* pInput)
+		{
+			pMessageBoxInput = pInput;
+		}
+
+		void UnregistMessageBoxInput()
+		{
+			pMessageBoxInput = nullptr;
+		}
 
 		void Regist(IInput* input)
 		{
@@ -45,6 +62,8 @@ namespace STatelier
 			m_pInputList.clear();
 		}
 	private:
+		MessageBoxControl* pMessageBoxControl;
+		IInput* pMessageBoxInput;
 		std::vector<IInput*> m_pInputList;
 		std::array<char, 256> buffer = { 0 };
 	};
